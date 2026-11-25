@@ -106,8 +106,136 @@ function ShipmentLabel({ shipment, onClose }) {
   );
 }
 
+function HubDetailsDialog({ details, loading, error, onClose }) {
+  if (!loading && !error && !details) return null;
+  const hub = details?.hub;
+
+  return (
+    <div className="fixed inset-0 z-[80] grid place-items-center overflow-y-auto bg-black/60 p-4">
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="hub-details-title"
+        className="my-8 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-5 text-neutral-900 shadow-xl dark:bg-neutral-900 dark:text-white"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[10px] font-bold tracking-widest text-neutral-400">
+              CONFIDENTIAL HUB RECORD
+            </p>
+            <h2 id="hub-details-title" className="mt-1 text-lg font-extrabold">
+              {hub?.name || "Hub details"}
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-lg px-3 py-2 text-sm font-bold text-neutral-500"
+          >
+            Close
+          </button>
+        </div>
+        {loading ? (
+          <p role="status" className="mt-5 text-sm text-neutral-500">
+            Loading hub details…
+          </p>
+        ) : error ? (
+          <p role="alert" className="mt-5 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </p>
+        ) : hub ? (
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <section className="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+              <h3 className="text-sm font-bold">Hub and contact</h3>
+              <dl className="mt-3 grid gap-2 text-xs">
+                {[
+                  ["Hub code", hub.code],
+                  ["Name", hub.name],
+                  ["Type", hub.hubType],
+                  ["Address", hub.address],
+                  ["City", hub.city],
+                  ["District", hub.district],
+                  ["State", hub.state],
+                  ["Country", hub.country],
+                  ["Hub postal code", hub.postalCode],
+                  ["Pickup PIN codes", (hub.pickupPincodes || []).join(", ")],
+                  ["Delivery PIN codes", (hub.servedPincodes || []).join(", ")],
+                  ["In-charge", hub.inCharge?.name],
+                  ["Phone", hub.inCharge?.phone],
+                  ["Email", hub.inCharge?.email],
+                  ["Application status", hub.applicationStatus],
+                  ["Active", hub.isActive ? "Yes" : "No"],
+                  ["Created", hub.createdAt ? new Date(hub.createdAt).toLocaleString() : ""],
+                  ["Updated", hub.updatedAt ? new Date(hub.updatedAt).toLocaleString() : ""],
+                ].map(([label, value]) => (
+                  <div key={label} className="grid grid-cols-[7rem_1fr] gap-2">
+                    <dt className="font-semibold text-neutral-500">{label}</dt>
+                    <dd className="break-words">{value || "—"}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <section className="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+              <h3 className="text-sm font-bold">Hub staff and documents</h3>
+              <div className="mt-3 space-y-4">
+                {(details.staff || []).map((staff) => (
+                  <article key={staff.id} className="rounded-lg bg-neutral-50 p-3 text-xs dark:bg-neutral-800">
+                    <p className="font-bold">{staff.name}</p>
+                    <p className="mt-1 break-words">{staff.email || "No email"} · {staff.phone || "No phone"}</p>
+                    <p className="mt-1 text-neutral-500">
+                      {[staff.address, staff.district, staff.state, staff.postalCode, staff.country]
+                        .filter(Boolean)
+                        .join(", ") || "No staff address recorded"}
+                    </p>
+                    <p className="mt-1 text-neutral-500">
+                      {staff.applicationStatus || "—"} · {staff.isActive ? "Active" : "Inactive"} · {staff.isOnline ? "Online" : "Offline"}
+                    </p>
+                    <p className="mt-1 text-neutral-500">
+                      Applied: {staff.applicationSubmittedAt ? new Date(staff.applicationSubmittedAt).toLocaleString() : "—"} · Reviewed: {staff.reviewedAt ? new Date(staff.reviewedAt).toLocaleString() : "—"}
+                    </p>
+                    <p className="mt-1 text-neutral-500">
+                      Interview: {staff.interviewAt ? new Date(staff.interviewAt).toLocaleString() : "—"}
+                      {staff.interviewNote ? ` · ${staff.interviewNote}` : ""}
+                    </p>
+                    {staff.reviewedBy && (
+                      <p className="mt-1 text-neutral-500">Reviewed by: {staff.reviewedBy}</p>
+                    )}
+                    {staff.reviewNote && (
+                      <p className="mt-1 text-neutral-500">Review note: {staff.reviewNote}</p>
+                    )}
+                    <p className="mt-1">
+                      {staff.documentType || "No identity document on file"}
+                      {staff.documentNumber ? ` · ${staff.documentNumber}` : ""}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-3 font-bold text-orange-700">
+                      {staff.photoUrl && (
+                        <a href={staff.photoUrl} target="_blank" rel="noreferrer">
+                          Open staff photo
+                        </a>
+                      )}
+                      {staff.documentUrl && (
+                        <a href={staff.documentUrl} target="_blank" rel="noreferrer">
+                          Open identity document
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
+                {!details.staff?.length && (
+                  <p className="text-xs text-neutral-500">No staff accounts are linked to this hub.</p>
+                )}
+              </div>
+            </section>
+          </div>
+        ) : null}
+      </section>
+    </div>
+  );
+}
+
 export default function DeliveryPage() {
   const [agents, setAgents] = useState([]);
+  const [hubs, setHubs] = useState([]);
   const [shipments, setShipments] = useState([]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -132,20 +260,25 @@ export default function DeliveryPage() {
     email: "",
     phone: "",
     password: "",
-    district: "",
+    hubId: "",
   });
   const [label, setLabel] = useState(null);
+  const [hubDetails, setHubDetails] = useState(null);
+  const [hubDetailsLoading, setHubDetailsLoading] = useState(false);
+  const [hubDetailsError, setHubDetailsError] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
 
   const refresh = useCallback(async () => {
-    const [agentData, shipmentData] = await Promise.all([
+    const [agentData, shipmentData, hubData] = await Promise.all([
       adminApi.deliveryAgents(locationFilters),
       adminApi.deliveryShipments(),
+      adminApi.deliveryHubs(),
     ]);
     setAgents(agentData.agents || []);
     setShipments(shipmentData.shipments || []);
+    setHubs(hubData.hubs || []);
   }, [locationFilters]);
 
   useEffect(() => {
@@ -265,7 +398,7 @@ export default function DeliveryPage() {
         email: "",
         phone: "",
         password: "",
-        district: "",
+        hubId: "",
       });
       setNotice(`Hub staff account created for ${agent.email}.`);
       await refresh();
@@ -274,6 +407,41 @@ export default function DeliveryPage() {
     } finally {
       setBusy(false);
     }
+  }
+
+  async function reviewHub(hub, status) {
+    setError("");
+    setNotice("");
+    setBusy(true);
+    try {
+      await adminApi.reviewHubApplication(hub.id, status);
+      setNotice(`${hub.name} marked ${status.toLowerCase()}.`);
+      await refresh();
+    } catch (reviewError) {
+      setError(reviewError.message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function showHubDetails(hub) {
+    setHubDetails(null);
+    setHubDetailsError("");
+    setHubDetailsLoading(true);
+    try {
+      const data = await adminApi.deliveryHubDetails(hub.id);
+      setHubDetails(data);
+    } catch (detailsError) {
+      setHubDetailsError(detailsError.message);
+    } finally {
+      setHubDetailsLoading(false);
+    }
+  }
+
+  function closeHubDetails() {
+    setHubDetails(null);
+    setHubDetailsError("");
+    setHubDetailsLoading(false);
   }
 
   async function assignShipment(shipment) {
@@ -325,14 +493,13 @@ export default function DeliveryPage() {
         <PanelTitle title="Create hub staff account" eyebrow="HUB ACCESS" />
         <form
           onSubmit={createHubStaff}
-          className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-5"
+          className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-6"
         >
           {[
             ["name", "Full name", "text"],
             ["email", "Email", "email"],
             ["phone", "Phone", "tel"],
             ["password", "Temporary password (10+ characters)", "password"],
-            ["district", "Hub / city", "text"],
           ].map(([field, label, type]) => (
             <label key={field} className="text-xs font-semibold text-neutral-600 dark:text-neutral-300">
               {label}
@@ -352,12 +519,92 @@ export default function DeliveryPage() {
               />
             </label>
           ))}
+          <label className="text-xs font-semibold text-neutral-600 dark:text-neutral-300">
+            Assigned hub
+            <select
+              required
+              value={hubStaffForm.hubId}
+              onChange={(event) =>
+                setHubStaffForm((current) => ({ ...current, hubId: event.target.value }))
+              }
+              className="mt-1.5 h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            >
+              <option value="">Select an approved hub</option>
+              {hubs
+                .filter((hub) => hub.applicationStatus === "Approved" && hub.isActive)
+                .map((hub) => (
+                  <option key={hub.id} value={hub.id}>
+                    {hub.name} · {hub.code}
+                  </option>
+                ))}
+            </select>
+          </label>
           <div className="flex items-end">
-            <Button variant="primary" disabled={busy}>
+            <Button
+              variant="primary"
+              disabled={busy || !hubs.some((hub) => hub.applicationStatus === "Approved" && hub.isActive)}
+            >
               Create hub login
             </Button>
           </div>
         </form>
+      </Panel>
+
+      <Panel className="p-5">
+        <PanelTitle title="Hub applications and directory" eyebrow={`${hubs.length} HUBS`} />
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {hubs.map((hub) => (
+            <article key={hub.id} className="rounded-lg border border-neutral-200 p-4 dark:border-neutral-700">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <h3 className="text-sm font-bold">{hub.name} · {hub.code}</h3>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    {[hub.address, hub.city, hub.district, hub.state, hub.country, hub.postalCode]
+                      .filter(Boolean)
+                      .join(", ")}
+                  </p>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    Pickup postal codes: {hub.pickupPincodes.join(", ")}
+                  </p>
+                </div>
+                <Status value={hub.applicationStatus} />
+              </div>
+              <p className="mt-3 text-xs">
+                In-charge: <b>{hub.inCharge.name || "Not listed"}</b>
+              </p>
+              <p className="mt-1 break-words text-xs text-neutral-600 dark:text-neutral-300">
+                Phone: {hub.inCharge.phone || "Not listed"} · Email: {hub.inCharge.email || "Not listed"}
+              </p>
+              <div className="mt-2 flex flex-wrap gap-3 text-xs font-semibold text-orange-700">
+                {hub.inCharge.phone && <a href={`tel:${hub.inCharge.phone}`}>Call</a>}
+                {hub.inCharge.phone && (
+                  <a
+                    href={`https://wa.me/${hub.inCharge.phone.replace(/\D/g, "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    WhatsApp
+                  </a>
+                )}
+                {hub.inCharge.email && <a href={`mailto:${hub.inCharge.email}`}>Email</a>}
+                <button type="button" onClick={() => showHubDetails(hub)}>
+                  View full details
+                </button>
+              </div>
+              {hub.applicationStatus === "Pending" && (
+                <div className="mt-3 flex gap-2">
+                  <Button variant="primary" disabled={busy} onClick={() => reviewHub(hub, "Approved")}>
+                    Approve hub
+                  </Button>
+                  <Button disabled={busy} onClick={() => reviewHub(hub, "Rejected")}>
+                    Reject
+                  </Button>
+                </div>
+              )}
+            </article>
+          ))}
+          {!hubs.length && <Empty text="No hub applications or registered hubs yet." />}
+        </div>
       </Panel>
 
       <Panel className="p-5">
@@ -751,6 +998,12 @@ export default function DeliveryPage() {
         )}
       </Panel>
       {label && <ShipmentLabel shipment={label} onClose={() => setLabel(null)} />}
+      <HubDetailsDialog
+        details={hubDetails}
+        loading={hubDetailsLoading}
+        error={hubDetailsError}
+        onClose={closeHubDetails}
+      />
     </AdminPageLayout>
   );
 }

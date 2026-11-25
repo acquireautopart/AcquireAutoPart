@@ -8,16 +8,17 @@ import { adminApi } from "@/features/admin/lib/adminApi";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState(null);
+  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
-    adminApi
-      .settings()
-      .then((data) => {
+    Promise.all([adminApi.settings(), adminApi.deliveryCountries()])
+      .then(([data, countryOptions]) => {
         setSettings(data.settings);
+        setCountries(countryOptions);
         setError("");
       })
       .catch((requestError) => setError(requestError.message))
@@ -49,6 +50,7 @@ export default function SettingsPage() {
       ) : settings ? (
         <SettingsSection
           settings={settings}
+          countries={countries}
           onSave={saveSettings}
           busy={saving}
           error={error}

@@ -13,6 +13,11 @@ deliveryRouter.post(
   authRateLimiter,
   controller.createApplication,
 );
+deliveryRouter.post(
+  "/auth/hub-applications",
+  authRateLimiter,
+  controller.createHubApplication,
+);
 deliveryRouter.put(
   "/auth/applications/files",
   authRateLimiter,
@@ -31,6 +36,7 @@ deliveryRouter.get(
   requireStaffRole("delivery_agent"),
   controller.tasks,
 );
+deliveryRouter.get("/earnings", controller.earnings);
 deliveryRouter.post(
   "/tasks/:orderId/events",
   requireStaffRole("delivery_agent"),

@@ -41,6 +41,12 @@ async function createApplication(req, res) {
   return res.status(201).json(application);
 }
 
+async function createHubApplication(req, res) {
+  return res.status(201).json(
+    await service.createHubApplication(req.body || {}),
+  );
+}
+
 async function uploadApplicationFile(req, res) {
   const result = await service.uploadApplicationFile(
     req.get("x-application-token"),
@@ -91,6 +97,10 @@ async function tasks(req, res) {
   return res.json(await service.listTasks(req.deliveryAgent._id));
 }
 
+async function earnings(req, res) {
+  return res.json(await service.getEarnings(req.deliveryAgent, req.query));
+}
+
 async function addTaskEvent(req, res) {
   return res.json({
     task: await service.addTaskEvent(
@@ -102,7 +112,9 @@ async function addTaskEvent(req, res) {
 }
 
 async function hubTasks(req, res) {
-  return res.json(await service.listHubTasks());
+  return res.json(
+    await service.listHubTasks(req.deliveryAgent.hub),
+  );
 }
 
 async function addHubTaskEvent(req, res) {
@@ -111,6 +123,7 @@ async function addHubTaskEvent(req, res) {
       req.deliveryAgent._id,
       req.params.orderId,
       req.body || {},
+      req.deliveryAgent.hub,
     ),
   });
 }
@@ -138,12 +151,14 @@ async function addHubReverseTaskEvent(req, res) {
 module.exports = {
   login,
   createApplication,
+  createHubApplication,
   uploadApplicationFile,
   me,
   logout,
   changePassword,
   setAvailability,
   tasks,
+  earnings,
   addTaskEvent,
   hubTasks,
   addHubTaskEvent,

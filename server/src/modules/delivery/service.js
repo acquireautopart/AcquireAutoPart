@@ -2,16 +2,25 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const DeliveryAgent = require("./models/DeliveryAgent");
+const Hub = require("../tracking/models/Hub");
 const Order = require("../customer/models/Order");
 const ReturnRequest = require("../customer/models/ReturnRequest");
+const AdminSetting = require("../admin/models/AdminSetting");
 const Product = require("../seller/models/Product");
 const HttpError = require("../../utils/HttpError");
 const { decryptValue, encryptValue } = require("../../utils/encryption");
 const verificationStorage = require("../seller/verificationStorage");
-const { getCountry, getIdentityDocumentTypes } = require("../market/countries");
+const {
+  countries,
+  getCountry,
+  getIdentityDocumentTypes,
+} = require("../market/countries");
+const { buildOrderTimeline } = require("../customer/shop/helpers");
 const sellerService = require("../seller/service");
+const hubService = require("./hubService");
 
 const EVENT_NEXT = {
+  Packed: ["Picked Up"],
   "Ready for Pickup": ["Picked Up"],
   "Picked Up": ["Arrived at Origin Hub"],
   "Arrived at Origin Hub": ["In Transit"],
@@ -48,6 +57,233 @@ const ATTEMPT_REASONS = [
 const MAX_DELIVERY_ATTEMPTS = 3;
 const MAX_OTP_FAILURES = 5;
 
+function countryFromAddress(value) {
+  const raw = String(value || "").trim();
+  return (
+    getCountry(raw) ||
+    countries.find((country) => country.name.toLowerCase() === raw.toLowerCase()) ||
+    null
+  );
+}
+
+function findPayoutRate(rates, address, weightGrams) {
+  const country = countryFromAddress(address?.country);
+  const city = String(address?.city || "").trim().toLowerCase();
+  const weight = Number(weightGrams);
+  if (!country || !city || !Number.isInteger(weight) || weight < 1) return null;
+  return (
+    rates.find(
+      (rate) =>
+        rate.country === country.code &&
+        String(rate.city || "").trim().toLowerCase() === city &&
+        weight >= Number(rate.minWeightGrams) &&
+        weight <= Number(rate.maxWeightGrams),
+    ) || null
+  );
+}
+
+function dateKeyInTimeZone(value, timeZone) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(value);
+  const fields = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${fields.year}-${fields.month}-${fields.day}`;
+}
+
+function addCurrencyTotals(target, currency, amount, gross, riderShare) {
+  let totals = target.get(currency);
+  if (!totals) {
+    totals = { currency, amount: 0, grossAmount: 0, riderShareAmount: 0 };
+    target.set(currency, totals);
+  }
+  totals.amount += amount;
+  totals.grossAmount += gross;
+  totals.riderShareAmount += riderShare;
+}
+
+function finishCurrencyTotals(target) {
+  return [...target.values()]
+    .map((totals) => ({
+      ...totals,
+      amount: Math.round(totals.amount * 100) / 100,
+      grossAmount: Math.round(totals.grossAmount * 100) / 100,
+      riderShareAmount: Math.round(totals.riderShareAmount * 100) / 100,
+    }))
+    .sort((left, right) => left.currency.localeCompare(right.currency));
+}
+
+async function getEarnings(agent, query = {}) {
+  const from = new Date(query.from);
+  const to = new Date(query.to);
+  if (
+    !Number.isFinite(from.getTime()) ||
+    !Number.isFinite(to.getTime()) ||
+    from >= to ||
+    to.getTime() - from.getTime() > 35 * 24 * 60 * 60 * 1000
+  ) {
+    throw new HttpError(400, "Choose a valid earnings date range of 35 days or less.");
+  }
+  const timeZone = String(query.timeZone || "UTC");
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone }).format(from);
+  } catch {
+    throw new HttpError(400, "Choose a valid local time zone.");
+  }
+  const isHubStaff = agent.role === "hub_staff";
+  const staffFilter = isHubStaff
+    ? { assignedHub: agent.hub }
+    : { assignedDeliveryAgent: agent._id };
+  if (isHubStaff && !agent.hub) {
+    return {
+      role: agent.role,
+      timeZone,
+      summary: {
+        completedDeliveries: 0,
+        unconfiguredCount: 0,
+        estimatedCount: 0,
+        currencies: [],
+      },
+      days: [],
+    };
+  }
+  const orders = await Order.find({
+    sellerFulfillments: {
+      $elemMatch: {
+        ...staffFilter,
+        status: "Delivered",
+        events: {
+          $elemMatch: {
+            status: "Delivered",
+            source: "delivery_agent",
+            occurredAt: { $gte: from, $lt: to },
+          },
+        },
+      },
+    },
+  })
+    .select("address currency sellerFulfillments")
+    .lean();
+  const setting = await AdminSetting.findOne({ key: "marketplace" })
+    .select("deliveryPayoutRates")
+    .lean();
+  const rates = setting?.deliveryPayoutRates || [];
+  const dayMap = new Map();
+  const totalMap = new Map();
+  let completedDeliveries = 0;
+  let unconfiguredCount = 0;
+  let estimatedCount = 0;
+
+  for (const order of orders) {
+    for (const state of order.sellerFulfillments || []) {
+      if (
+        state.status !== "Delivered" ||
+        (isHubStaff
+          ? state.assignedHub?.toString() !== agent.hub.toString()
+          : state.assignedDeliveryAgent?.toString() !== agent._id.toString())
+      ) {
+        continue;
+      }
+      const event = [...(state.events || [])]
+        .reverse()
+        .find(
+          (item) =>
+            item.status === "Delivered" &&
+            item.source === "delivery_agent" &&
+            item.occurredAt >= from &&
+            item.occurredAt < to,
+        );
+      if (!event) continue;
+
+      const rate =
+        state.payoutRateConfigured === false
+          ? null
+          : findPayoutRate(rates, order.address, state.packageWeightGrams);
+      const isEstimated = state.payoutRateConfigured == null && Boolean(rate);
+      const payoutConfigured =
+        state.payoutRateConfigured === true || isEstimated;
+      const riderAmount =
+        state.payoutRateConfigured !== false &&
+        state.deliveryEarningAmount != null
+          ? Number(state.deliveryEarningAmount)
+          : rate
+            ? Number(rate.deliveryAgentRate)
+            : null;
+      const grossAmount =
+        state.payoutRateConfigured !== false &&
+        state.hubGrossEarningAmount != null
+          ? Number(state.hubGrossEarningAmount)
+          : rate
+            ? Number(rate.hubGrossRate)
+            : null;
+      const hubAmount =
+        state.payoutRateConfigured !== false && state.hubEarningAmount != null
+          ? Number(state.hubEarningAmount)
+          : rate && grossAmount != null && riderAmount != null
+            ? Math.max(0, grossAmount - riderAmount)
+            : null;
+      const amount = isHubStaff ? hubAmount : riderAmount;
+      if (!payoutConfigured) unconfiguredCount += 1;
+      if (isEstimated) estimatedCount += 1;
+      const destinationCountry = countryFromAddress(order.address?.country);
+      const currency =
+        (isHubStaff
+          ? state.hubEarningCurrency
+          : state.deliveryEarningCurrency) ||
+        rate?.currency ||
+        destinationCountry?.currency ||
+        order.currency ||
+        "USD";
+      const dayKey = dateKeyInTimeZone(event.occurredAt, timeZone);
+      let day = dayMap.get(dayKey);
+      if (!day) {
+        day = {
+          date: dayKey,
+          completedDeliveries: 0,
+          unconfiguredCount: 0,
+          estimatedCount: 0,
+          currencies: new Map(),
+        };
+        dayMap.set(dayKey, day);
+      }
+      completedDeliveries += 1;
+      day.completedDeliveries += 1;
+      if (!payoutConfigured) day.unconfiguredCount += 1;
+      if (isEstimated) day.estimatedCount += 1;
+      addCurrencyTotals(totalMap, currency, amount || 0, grossAmount || 0, riderAmount || 0);
+      addCurrencyTotals(
+        day.currencies,
+        currency,
+        amount || 0,
+        grossAmount || 0,
+        riderAmount || 0,
+      );
+    }
+  }
+
+  return {
+    role: agent.role,
+    timeZone,
+    summary: {
+      completedDeliveries,
+      unconfiguredCount,
+      estimatedCount,
+      currencies: finishCurrencyTotals(totalMap),
+    },
+    days: [...dayMap.values()]
+      .sort((left, right) => left.date.localeCompare(right.date))
+      .map((day) => ({
+        date: day.date,
+        completedDeliveries: day.completedDeliveries,
+        unconfiguredCount: day.unconfiguredCount,
+        estimatedCount: day.estimatedCount,
+        currencies: finishCurrencyTotals(day.currencies),
+      })),
+  };
+}
+
 function canTransition(current, next) {
   return Boolean(EVENT_NEXT[current]?.includes(next));
 }
@@ -70,6 +306,7 @@ function findRecordedEvent(events, clientEventId, status) {
 }
 
 function publicAgent(agent) {
+  const hubId = agent.hub?._id?.toString?.() || agent.hub?.toString?.() || "";
   return {
     id: agent._id?.toString?.() || agent.id,
     name: agent.name,
@@ -79,6 +316,8 @@ function publicAgent(agent) {
     staffRole: agent.role || "delivery_agent",
     district: agent.district || "",
     state: agent.state || "",
+    hubId,
+    hubName: agent.hub?.name || "",
     isOnline: Boolean(agent.isOnline),
   };
 }
@@ -195,7 +434,7 @@ async function createHubStaff(body = {}) {
   const email = String(body.email || "").trim().toLowerCase();
   const phone = String(body.phone || "").trim();
   const password = String(body.password || "");
-  const district = String(body.district || "").trim();
+  const hubId = String(body.hubId || "").trim();
   if (name.length < 2 || name.length > 100) {
     throw new HttpError(400, "Enter the hub staff member's full name.");
   }
@@ -208,9 +447,15 @@ async function createHubStaff(body = {}) {
   if (!isValidPassword(password)) {
     throw new HttpError(400, "Passwords must be 10–128 characters long.");
   }
-  if (district.length > 120) {
-    throw new HttpError(400, "Hub location must be 120 characters or fewer.");
+  if (!mongoose.isValidObjectId(hubId)) {
+    throw new HttpError(400, "Choose a valid hub for this staff account.");
   }
+  const hub = await Hub.findOne({
+    _id: hubId,
+    applicationStatus: "Approved",
+    isActive: true,
+  }).lean();
+  if (!hub) throw new HttpError(404, "An approved hub was not found.");
   try {
     const agent = await DeliveryAgent.create({
       name,
@@ -218,9 +463,13 @@ async function createHubStaff(body = {}) {
       phone,
       passwordHash: await bcrypt.hash(password, 12),
       role: "hub_staff",
+      hub: hub._id,
       isActive: true,
       applicationStatus: "Approved",
-      district,
+      country: hub.country || undefined,
+      state: hub.state,
+      district: hub.district || hub.city,
+      postalCode: hub.postalCode || "",
     });
     return { ...publicAgent(agent), isActive: agent.isActive };
   } catch (error) {
@@ -283,7 +532,9 @@ async function login({ email, password, role = "delivery_agent" } = {}) {
       .toLowerCase(),
     isActive: true,
     role,
-  }).select("+passwordHash");
+  })
+    .select("+passwordHash")
+    .populate("hub", "name code");
   if (
     !agent ||
     !(await bcrypt.compare(String(password || ""), agent.passwordHash))
@@ -326,8 +577,9 @@ async function listAgents(filters = {}) {
   }
   const agents = await DeliveryAgent.find(query)
     .select(
-      "name email phone role isActive isOnline applicationStatus address country state district postalCode applicationSubmittedAt interviewAt interviewNote reviewNote createdAt",
+      "name email phone role hub isActive isOnline applicationStatus address country state district postalCode applicationSubmittedAt interviewAt interviewNote reviewNote createdAt",
     )
+    .populate("hub", "name code")
     .sort({ name: 1 })
     .lean();
   return {
@@ -522,19 +774,25 @@ function objectIdString(value) {
   return value?._id?.toString?.() || value?.toString?.() || "";
 }
 
-function serializeShipment(order, sellerState, { includeAgent = false } = {}) {
+function serializeShipment(
+  order,
+  sellerState,
+  { includeAgent = false, includePickup = false } = {},
+) {
   const customer = order.customer || {};
   const task = {
     orderId: order._id.toString(),
     orderCode: order.code,
     sellerId: objectIdString(sellerState.seller),
     sellerName: sellerState.seller?.storeName || "",
+    hubPickupStatus: sellerState.hubPickupStatus || "",
     fulfillment: sellerState.status,
     trackingStatus: sellerState.trackingStatus || "Order Confirmed",
     carrier: sellerState.carrier || "",
     tracking: sellerState.tracking || "",
     trackingUrl: sellerState.trackingUrl || "",
     scanToken: sellerState.scanToken || "",
+    packageWeightGrams: sellerState.packageWeightGrams ?? null,
     customer: {
       name: order.address?.name || customer.name || "Customer",
       phone: order.address?.phone || "",
@@ -567,6 +825,15 @@ function serializeShipment(order, sellerState, { includeAgent = false } = {}) {
             },
     })),
   };
+  if (includePickup) {
+    task.pickup = {
+      storeName: sellerState.seller?.storeName || "",
+      phone: sellerState.seller?.phone || "",
+      email: sellerState.seller?.email || "",
+      address: sellerState.seller?.address || "",
+      postalCode: sellerState.seller?.pickupPostalCode || "",
+    };
+  }
   if (includeAgent) {
     task.assignedAgent = sellerState.assignedDeliveryAgent
       ? {
@@ -796,7 +1063,39 @@ async function listTasks(agentId) {
   return { tasks };
 }
 
-async function listHubTasks() {
+async function listHubTasks(hubId) {
+  const pickupOrders = hubId
+    ? await Order.find({
+        sellerFulfillments: {
+          $elemMatch: {
+            assignedHub: hubId,
+            hubPickupStatus: "Pending",
+            status: "Packed",
+          },
+        },
+      })
+        .sort({ placedAt: 1 })
+        .limit(200)
+        .populate("sellerFulfillments.seller", "storeName phone email address pickupPostalCode")
+        .lean()
+    : [];
+  const pickupTasks = [];
+  for (const order of pickupOrders) {
+    for (const state of order.sellerFulfillments || []) {
+      if (
+        state.status !== "Packed" ||
+        state.hubPickupStatus !== "Pending" ||
+        state.assignedHub?.toString() !== hubId.toString()
+      ) {
+        continue;
+      }
+      pickupTasks.push({
+        ...serializeShipment(order, state, { includePickup: true }),
+        taskType: "pickup",
+        placedAt: order.placedAt,
+      });
+    }
+  }
   const orders = await Order.find({
     sellerFulfillments: {
       $elemMatch: {
@@ -811,6 +1110,7 @@ async function listHubTasks() {
     .populate("sellerFulfillments.seller", "storeName")
     .lean();
   const tasks = [];
+  tasks.push(...pickupTasks);
   for (const order of orders) {
     for (const state of order.sellerFulfillments || []) {
       if (
@@ -949,6 +1249,7 @@ async function addTaskEvent(
   orderId,
   body = {},
   actorRole = "delivery_agent",
+  hubId = null,
 ) {
   if (!["delivery_agent", "hub_staff"].includes(actorRole)) {
     throw new HttpError(403, "This account cannot record shipment scans.");
@@ -956,6 +1257,11 @@ async function addTaskEvent(
   if (!mongoose.isValidObjectId(orderId))
     throw new HttpError(400, "Choose a valid package.");
   const scanToken = String(body.scanToken || "").trim();
+  const eventStatus = String(body.status || "");
+  const isHubPickup = actorRole === "hub_staff" && eventStatus === "Picked Up";
+  if (isHubPickup && !hubId) {
+    throw new HttpError(403, "This hub account is not assigned to a pickup hub.");
+  }
   if (!/^[a-f\d]{64}$/i.test(scanToken)) {
     throw new HttpError(
       400,
@@ -970,6 +1276,7 @@ async function addTaskEvent(
         ...(actorRole === "delivery_agent"
           ? { assignedDeliveryAgent: agentId }
           : {}),
+        ...(isHubPickup ? { assignedHub: hubId, hubPickupStatus: "Pending" } : {}),
       },
     },
   })
@@ -980,13 +1287,20 @@ async function addTaskEvent(
   let sellerState = order.sellerFulfillments.find(
     (state) =>
       state.scanToken === scanToken &&
-      (actorRole === "hub_staff" ||
+      (isHubPickup
+        ? state.assignedHub?.toString() === hubId.toString()
+        : actorRole === "hub_staff" ||
         state.assignedDeliveryAgent?.toString() === agentId.toString()),
   );
-  const eventStatus = String(body.status || "");
+  if (
+    isHubPickup &&
+    (sellerState.status !== "Packed" || sellerState.hubPickupStatus !== "Pending")
+  ) {
+    throw new HttpError(409, "This package is not waiting for pickup at your hub.");
+  }
   if (
     actorRole === "hub_staff"
-      ? !HUB_EVENT_STATUSES.has(eventStatus)
+      ? !HUB_EVENT_STATUSES.has(eventStatus) && !isHubPickup
       : HUB_EVENT_STATUSES.has(eventStatus)
   ) {
     throw new HttpError(
@@ -1103,6 +1417,17 @@ async function addTaskEvent(
   const now = new Date();
   let deliveryOtp = "";
   if (eventStatus === "Delivered") {
+    const setting = await AdminSetting.findOne({ key: "marketplace" })
+      .select("deliveryPayoutRates")
+      .lean();
+    const payoutRate = findPayoutRate(
+      setting?.deliveryPayoutRates || [],
+      order.address,
+      sellerState.packageWeightGrams,
+    );
+    const payoutCountry = countryFromAddress(order.address?.country);
+    const payoutCurrency =
+      payoutRate?.currency || payoutCountry?.currency || order.currency || "USD";
     await sellerService.updateOrder(
       sellerState.seller,
       order._id,
@@ -1120,6 +1445,24 @@ async function addTaskEvent(
     order = refreshed;
     sellerState = getSellerState(refreshed, sellerState.seller);
     sellerState.deliveryOtpUsedAt = now;
+    sellerState.payoutRateConfigured = Boolean(payoutRate);
+    sellerState.deliveryEarningAmount = payoutRate
+      ? Number(payoutRate.deliveryAgentRate)
+      : null;
+    sellerState.deliveryEarningCurrency = payoutCurrency;
+    sellerState.deliveryEarningCountry = payoutCountry?.code || "";
+    sellerState.hubGrossEarningAmount = payoutRate
+      ? Number(payoutRate.hubGrossRate)
+      : null;
+    sellerState.hubEarningAmount = payoutRate
+      ? Math.max(
+          0,
+          Number(payoutRate.hubGrossRate) -
+            Number(payoutRate.deliveryAgentRate),
+        )
+      : null;
+    sellerState.hubEarningCurrency = payoutCurrency;
+    sellerState.hubEarningCountry = payoutCountry?.code || "";
   } else if (eventStatus === "Out for Delivery") {
     deliveryOtp = String(crypto.randomInt(0, 1_000_000)).padStart(6, "0");
     sellerState.deliveryOtpEncrypted = encryptValue(deliveryOtp);
@@ -1132,6 +1475,22 @@ async function addTaskEvent(
     sellerState.deliveryAttempts = (sellerState.deliveryAttempts || 0) + 1;
   }
   sellerState.trackingStatus = eventStatus;
+  if (isHubPickup) {
+    sellerState.status = "Shipped";
+    sellerState.hubPickupStatus = "Picked Up";
+    sellerState.updatedAt = now;
+    const statuses = order.sellerFulfillments.map((state) => state.status);
+    if (statuses.length && statuses.every((status) => status === "Delivered")) {
+      order.status = "Delivered";
+    } else if (statuses.some((status) => ["Shipped", "Delivered"].includes(status))) {
+      order.status = "Shipped";
+    } else if (order.status !== "Cancelled") {
+      order.status = "Processing";
+    }
+    if (order.status !== "Cancelled") {
+      order.timeline = buildOrderTimeline(order.status, order.placedAt, now);
+    }
+  }
   if (codCollectedAmount !== null) {
     sellerState.codCollectedAmount = codCollectedAmount;
     sellerState.codCollectedAt = now;
@@ -1150,14 +1509,17 @@ async function addTaskEvent(
     location: location || undefined,
   });
   await order.save();
+  if (isHubPickup) {
+    await sellerService.notifyCustomerShipment(order, sellerState);
+  }
   return {
     ...serializeShipment(order, sellerState),
     deliveryOtpIssued: Boolean(deliveryOtp),
   };
 }
 
-async function addHubTaskEvent(agentId, orderId, body = {}) {
-  return addTaskEvent(agentId, orderId, body, "hub_staff");
+async function addHubTaskEvent(agentId, orderId, body = {}, hubId = null) {
+  return addTaskEvent(agentId, orderId, body, "hub_staff", hubId);
 }
 
 function reverseNextStatuses(entry) {
@@ -1318,6 +1680,11 @@ module.exports = {
   getApplicationInput,
   createApplication,
   createHubStaff,
+  createHubApplication: hubService.createHubApplication,
+  listHubs: hubService.listHubs,
+  getHubDetails: hubService.getHubDetails,
+  listSellerHubs: hubService.listSellerHubs,
+  reviewHubApplication: hubService.reviewHubApplication,
   uploadApplicationFile,
   listAgents,
   getAgentApplicationReview,
@@ -1334,4 +1701,7 @@ module.exports = {
   addReverseTaskEvent,
   addHubReverseTaskEvent,
   expectedCodAmount,
+  findPayoutRate,
+  dateKeyInTimeZone,
+  getEarnings,
 };

@@ -57,6 +57,12 @@ export default function DeliveryLandingPage() {
             >
               Partner login
             </Link>
+            <Link
+              href="/hub/register"
+              className="hidden rounded-md border border-slate-300 px-4 py-2.5 font-bold text-slate-700 transition hover:bg-slate-50 sm:inline"
+            >
+              Register a hub
+            </Link>
           </div>
         </nav>
       </header>

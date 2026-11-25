@@ -51,6 +51,12 @@ const deliveryAgentSchema = new mongoose.Schema(
       enum: ["delivery_agent", "hub_staff"],
       default: "delivery_agent",
     },
+    hub: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hub",
+      default: null,
+      index: true,
+    },
   },
   { timestamps: true, versionKey: false },
 );

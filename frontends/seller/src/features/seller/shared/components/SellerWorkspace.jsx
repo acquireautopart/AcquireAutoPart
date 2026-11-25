@@ -314,8 +314,10 @@ function SellerDashboard({ initialSection = "Dashboard" }) {
       await action();
       await refresh();
       notify(message);
+      return true;
     } catch (e) {
       setError(e.message);
+      return false;
     }
   }
   async function logout() {
@@ -471,6 +473,7 @@ function SellerDashboard({ initialSection = "Dashboard" }) {
         name: f.get("name"),
         storeName: f.get("storeName"),
         address: f.get("address"),
+        pickupPostalCode: f.get("pickupPostalCode"),
         currency: f.get("currency"),
         lowStockThreshold: Number(f.get("lowStockThreshold")),
         shippingDays: Number(f.get("shippingDays")),

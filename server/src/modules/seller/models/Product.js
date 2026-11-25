@@ -66,6 +66,7 @@ const productSchema = new mongoose.Schema(
       default: "Active",
       index: true,
     },
+    deletedAt: { type: Date, default: null, index: true },
     moderationStatus: {
       type: String,
       enum: ["Clear", "Flagged", "Hidden"],

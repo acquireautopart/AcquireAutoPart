@@ -1,4 +1,4 @@
-const test = require("node:test");
+const { mock, test } = require("node:test");
 const assert = require("node:assert/strict");
 const { serializeOrder } = require("../src/modules/customer/shop/helpers");
 const {
@@ -6,6 +6,8 @@ const {
   updateOrder,
 } = require("../src/modules/seller/service");
 const { encryptValue } = require("../src/utils/encryption");
+const Product = require("../src/modules/seller/models/Product");
+const Order = require("../src/modules/customer/models/Order");
 
 test("package scans advance through packed, shipped, and delivered once each", () => {
   assert.equal(nextScannedFulfillment("New"), "Packed");
@@ -20,6 +22,45 @@ test("seller actions cannot confirm delivery without a verified delivery agent",
     () => updateOrder("seller-id", "order-id", "Delivered"),
     { statusCode: 403 },
   );
+});
+
+test("seller must provide a valid packed parcel weight before packing", async () => {
+  const sellerId = "64f000000000000000000012";
+  mock.method(Product, "find", () => ({
+    select() {
+      return this;
+    },
+    lean: async () => [],
+  }));
+  mock.method(Order, "findOne", async () => ({
+    status: "Processing",
+    sellerFulfillment: "New",
+    sellerFulfillments: [{ seller: sellerId, status: "New" }],
+    payment: { method: "Cash on delivery", paid: false },
+    items: [],
+  }));
+
+  try {
+    for (const weight of [undefined, 0, 100000.5, 100001]) {
+      await assert.rejects(
+        () =>
+          updateOrder(
+            sellerId,
+            "64f000000000000000000013",
+            "Packed",
+            undefined,
+            "seller_manual",
+            undefined,
+            undefined,
+            { latitude: 19.076, longitude: 72.8777 },
+            weight,
+          ),
+        { statusCode: 400, message: /weight in grams/i },
+      );
+    }
+  } finally {
+    mock.restoreAll();
+  }
 });
 
 test("seller order updates require real GPS coordinates", async () => {
@@ -42,6 +83,47 @@ test("seller order updates require real GPS coordinates", async () => {
         ),
       { statusCode: 400, message: /location/i },
     );
+  }
+});
+
+test("seller manual and QR actions cannot bypass a pending hub pickup scan", async () => {
+  const sellerId = "64f000000000000000000010";
+  const orderId = "64f000000000000000000011";
+  const sellerState = {
+    seller: sellerId,
+    status: "Packed",
+    hubPickupStatus: "Pending",
+  };
+  mock.method(Product, "find", () => ({
+    select: () => ({ lean: async () => [] }),
+  }));
+  mock.method(Order, "findOne", async () => ({
+    _id: orderId,
+    status: "Processing",
+    payment: { method: "Cash on delivery", paid: false },
+    sellerFulfillments: [sellerState],
+    items: [],
+  }));
+
+  try {
+    for (const source of ["seller_manual", "seller_scan"]) {
+      await assert.rejects(
+        () =>
+          updateOrder(
+            sellerId,
+            orderId,
+            "Shipped",
+            undefined,
+            source,
+            undefined,
+            undefined,
+            { latitude: 19.076, longitude: 72.8777 },
+          ),
+        { statusCode: 409, message: /hub must scan/i },
+      );
+    }
+  } finally {
+    mock.restoreAll();
   }
 });
 

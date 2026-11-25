@@ -40,6 +40,9 @@ async function dashboard(req, res) {
 async function sellers(req, res) {
   return res.json(await service.listSellers(req.query));
 }
+async function sellerDetails(req, res) {
+  return res.json(await service.getSellerDetails(req.admin, req.params.id));
+}
 async function updateSeller(req, res) {
   return res.json({
     seller: await service.updateSeller(
@@ -75,6 +78,14 @@ async function moderateProduct(req, res) {
       req.body?.action,
     ),
   });
+}
+async function deleteProduct(req, res) {
+  return res.json(
+    await service.deleteProduct(req.admin, req.params.id),
+  );
+}
+async function deleteProducts(req, res) {
+  return res.json(await service.deleteProducts(req.admin, req.body?.ids));
 }
 async function customers(req, res) {
   return res.json(await service.listCustomers(req.query));
@@ -165,6 +176,26 @@ async function createHubStaff(req, res) {
   });
 }
 
+async function deliveryHubs(req, res) {
+  return res.json(await service.listDeliveryHubs(req.query || {}));
+}
+
+async function deliveryHubDetails(req, res) {
+  return res.json(
+    await service.getDeliveryHubDetails(req.admin, req.params.id),
+  );
+}
+
+async function reviewHubApplication(req, res) {
+  return res.json({
+    hub: await service.reviewHubApplication(
+      req.admin,
+      req.params.id,
+      req.body?.status,
+    ),
+  });
+}
+
 async function updateDeliveryAgent(req, res) {
   return res.json({
     agent: await service.updateDeliveryAgent(
@@ -214,11 +245,14 @@ module.exports = {
   logout,
   dashboard,
   sellers,
+  sellerDetails,
   updateSeller,
   sellerVerification,
   reviewSellerVerification,
   products,
   moderateProduct,
+  deleteProduct,
+  deleteProducts,
   customers,
   orders,
   returns,
@@ -237,6 +271,9 @@ module.exports = {
   recordCodCollection,
   deliveryAgents,
   createHubStaff,
+  deliveryHubs,
+  deliveryHubDetails,
+  reviewHubApplication,
   updateDeliveryAgent,
   deliveryAgentApplication,
   reviewDeliveryAgent,

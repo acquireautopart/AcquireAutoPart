@@ -1,6 +1,8 @@
 const assert = require("node:assert/strict");
-const { test } = require("node:test");
+const { mock, test } = require("node:test");
 const categoryService = require("../src/modules/admin/categoryService");
+const Category = require("../src/modules/admin/models/Category");
+const Product = require("../src/modules/seller/models/Product");
 const { serializeOrder } = require("../src/modules/customer/shop/helpers");
 
 test("category markup is applied to public product and variant prices", () => {
@@ -20,6 +22,76 @@ test("category markup is applied to public product and variant prices", () => {
   assert.equal(product.variants[0].price, 56.25);
   assert.equal("storefrontPrice" in product, false);
   assert.equal("storefrontCompareAtPrice" in product, false);
+});
+
+test("zero storefront cache values do not hide valid product prices", () => {
+  const product = categoryService.applyStorefrontPrices(
+    {
+      price: 100,
+      compareAtPrice: 125,
+      storefrontPrice: 0,
+      storefrontCompareAtPrice: 0,
+      variants: [],
+    },
+    12.5,
+  );
+  assert.equal(product.price, 112.5);
+  assert.equal(product.compareAtPrice, 140.63);
+
+  const freeProduct = categoryService.applyStorefrontPrices(
+    { price: 0, storefrontPrice: 0, compareAtPrice: 0, storefrontCompareAtPrice: 0 },
+    12.5,
+  );
+  assert.equal(freeProduct.price, 0);
+  assert.equal(freeProduct.compareAtPrice, 0);
+});
+
+test("storefront initialization backfills stale zero prices from seller prices", async () => {
+  let filter;
+  let writes;
+  mock.method(Category, "bulkWrite", async () => ({}));
+  mock.method(Product, "find", (query) => {
+    filter = query;
+    return {
+      select() {
+        return this;
+      },
+      lean: async () => [
+        {
+          _id: "product-id",
+          category: "Brakes",
+          price: 100,
+          compareAtPrice: 125,
+        },
+      ],
+    };
+  });
+  mock.method(Category, "find", () => ({
+    select() {
+      return this;
+    },
+    lean: async () => [{ name: "Brakes", markupPercent: 12.5, active: true }],
+  }));
+  mock.method(Product, "bulkWrite", async (operations) => {
+    writes = operations;
+    return {};
+  });
+
+  try {
+    await categoryService.ensureInitialized();
+    assert.ok(
+      filter.$or.some(
+        (condition) => condition.storefrontPrice === 0 && condition.price.$gt === 0,
+      ),
+    );
+    assert.equal(writes[0].updateOne.update.$set.storefrontPrice, 112.5);
+    assert.equal(
+      writes[0].updateOne.update.$set.storefrontCompareAtPrice,
+      140.63,
+    );
+  } finally {
+    mock.restoreAll();
+  }
 });
 
 test("customer order serialization hides seller base prices and markup values", () => {

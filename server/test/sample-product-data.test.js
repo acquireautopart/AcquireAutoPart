@@ -12,7 +12,11 @@ test("sample auto-parts catalog has 132 valid four-wheel draft records", () => {
     const category = categories.find((entry) => entry.name === product.category);
     assert.ok(product.name);
     assert.ok(product.category);
-    assert.ok(category?.subcategories.includes(product.subcategory));
+    assert.ok(
+      category?.subcategories.some(
+        (subcategory) => subcategory.name === product.subcategory,
+      ),
+    );
     assert.ok(product.brand);
     assert.ok(Number.isFinite(product.price) && product.price > 0);
     assert.equal(product.status, "Draft");

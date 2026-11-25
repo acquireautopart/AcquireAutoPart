@@ -14,6 +14,7 @@ const HttpError = require("../../utils/HttpError");
 const { decryptValue } = require("../../utils/encryption");
 const verificationStorage = require("../seller/verificationStorage");
 const deliveryService = require("../delivery/service");
+const { getCountry } = require("../market/countries");
 
 const round = (n) => Math.round((Number(n) || 0) * 100) / 100;
 const months = (days) => Math.max(7, Math.min(90, Number(days) || 30));
@@ -373,6 +374,99 @@ async function getSellerVerification(admin, id) {
   };
 }
 
+async function getSellerDetails(admin, id) {
+  if (!mongoose.isValidObjectId(id)) throw new HttpError(404, "Seller not found.");
+  const seller = await Seller.findById(id)
+    .select(
+      [
+        "role",
+        "name",
+        "email",
+        "phone",
+        "storeName",
+        "address",
+        "pickupPostalCode",
+        "taxId",
+        "sellCategories",
+        "country",
+        "verified",
+        "adminStatus",
+        "stripeAccountId",
+        "settings",
+        "createdAt",
+        "updatedAt",
+        "identityVerification.status",
+        "identityVerification.documentType",
+        "identityVerification.contentType",
+        "identityVerification.submittedAt",
+        "identityVerification.reviewedAt",
+        "identityVerification.reviewedBy",
+        "identityVerification.reviewNote",
+        "identityVerification.signatureStatus",
+        "identityVerification.signatureContentType",
+        "identityVerification.signatureSubmittedAt",
+        "+identityVerification.documentKey",
+        "+identityVerification.documentNumberEncrypted",
+        "+identityVerification.signatureKey",
+      ].join(" "),
+    )
+    .lean();
+  if (!seller) throw new HttpError(404, "Seller not found.");
+
+  const verification = seller.identityVerification || {};
+  const [documentUrl, signatureUrl] = await Promise.all([
+    verification.documentKey
+      ? verificationStorage.createReviewUrl(verification.documentKey)
+      : "",
+    verification.signatureKey
+      ? verificationStorage.createReviewUrl(verification.signatureKey)
+      : "",
+  ]);
+  await record(
+    admin,
+    "seller.profile.viewed",
+    "seller",
+    id,
+    `Full profile for seller ${seller.storeName} was viewed.`,
+  );
+  return {
+    seller: {
+      id: seller._id.toString(),
+      role: seller.role || "seller",
+      name: seller.name || "",
+      email: seller.email,
+      phone: seller.phone || "",
+      storeName: seller.storeName || "",
+      address: seller.address || "",
+      pickupPostalCode: seller.pickupPostalCode || "",
+      taxId: seller.taxId || "",
+      sellCategories: seller.sellCategories || [],
+      country: seller.country || "",
+      verified: Boolean(seller.verified),
+      status: seller.adminStatus || "Pending",
+      stripeAccountId: seller.stripeAccountId || "",
+      settings: seller.settings || {},
+      createdAt: seller.createdAt || null,
+      updatedAt: seller.updatedAt || null,
+      identityVerification: {
+        status: verification.status || "Not submitted",
+        documentType: verification.documentType || "",
+        documentNumber: decryptValue(verification.documentNumberEncrypted),
+        documentUrl,
+        contentType: verification.contentType || "",
+        submittedAt: verification.submittedAt || null,
+        reviewedAt: verification.reviewedAt || null,
+        reviewedBy: verification.reviewedBy || "",
+        reviewNote: verification.reviewNote || "",
+        signatureStatus: verification.signatureStatus || "Not submitted",
+        signatureUrl,
+        signatureContentType: verification.signatureContentType || "",
+        signatureSubmittedAt: verification.signatureSubmittedAt || null,
+      },
+    },
+  };
+}
+
 async function reviewSellerVerification(admin, id, status, note = "") {
   if (!["Approved", "Rejected"].includes(status))
     throw new HttpError(
@@ -415,7 +509,7 @@ async function reviewSellerVerification(admin, id, status, note = "") {
 }
 
 async function listProducts(query = {}) {
-  const rows = await Product.find()
+  const rows = await Product.find({ deletedAt: null })
     .populate("seller", "storeName email")
     .sort({ createdAt: -1 })
     .limit(500)
@@ -455,8 +549,8 @@ async function moderateProduct(admin, id, action) {
         : action === "Active"
           ? { status: "Active", moderationStatus: "Clear" }
           : { moderationStatus: "Clear" };
-  const product = await Product.findByIdAndUpdate(
-    id,
+  const product = await Product.findOneAndUpdate(
+    { _id: id, deletedAt: null },
     { $set: patch },
     { new: true },
   );
@@ -473,6 +567,49 @@ async function moderateProduct(admin, id, action) {
     status: product.status,
     moderationStatus: product.moderationStatus,
   };
+}
+
+async function deleteProduct(admin, id) {
+  if (!mongoose.isValidObjectId(id))
+    throw new HttpError(404, "Listing not found.");
+  const product = await Product.findOneAndUpdate(
+    { _id: id, deletedAt: null },
+    { $set: { status: "Archived", deletedAt: new Date() } },
+    { new: true },
+  ).lean();
+  if (!product) throw new HttpError(404, "Listing not found.");
+  await record(
+    admin,
+    "listing.deleted",
+    "product",
+    id,
+    `Listing ${product.name} was deleted.`,
+  );
+  return { id, deletedAt: product.deletedAt };
+}
+
+async function deleteProducts(admin, ids) {
+  if (
+    !Array.isArray(ids) ||
+    ids.length < 1 ||
+    ids.length > 500 ||
+    ids.some((id) => !mongoose.isValidObjectId(id))
+  ) {
+    throw new HttpError(400, "Select between 1 and 500 valid listings.");
+  }
+  const uniqueIds = [...new Set(ids.map(String))];
+  const result = await Product.updateMany(
+    { _id: { $in: uniqueIds }, deletedAt: null },
+    { $set: { status: "Archived", deletedAt: new Date() } },
+  );
+  await record(
+    admin,
+    "listing.bulk_deleted",
+    "product",
+    "bulk",
+    `${result.modifiedCount} listing(s) were deleted.`,
+  );
+  return { deletedCount: result.modifiedCount };
 }
 
 async function listCustomers(query = {}) {
@@ -737,6 +874,72 @@ async function updateSettings(admin, body) {
       message: String(b.message || "").slice(0, 500),
       active: Boolean(b.active),
     }));
+  if (body.deliveryPayoutRates !== undefined) {
+    if (!Array.isArray(body.deliveryPayoutRates) || body.deliveryPayoutRates.length > 1000) {
+      throw new HttpError(400, "Add at most 1,000 delivery payout rate rules.");
+    }
+    const rules = body.deliveryPayoutRates.map((entry) => {
+      const country = getCountry(String(entry.country || ""));
+      const city = String(entry.city || "").trim();
+      const minWeightGrams = Number(entry.minWeightGrams);
+      const maxWeightGrams = Number(entry.maxWeightGrams);
+      const deliveryAgentRate = Number(entry.deliveryAgentRate);
+      const hubGrossRate = Number(entry.hubGrossRate);
+      if (!country || city.length < 2 || city.length > 120) {
+        throw new HttpError(400, "Choose a country and enter a valid destination city for each payout rule.");
+      }
+      if (
+        !Number.isInteger(minWeightGrams) ||
+        !Number.isInteger(maxWeightGrams) ||
+        minWeightGrams < 1 ||
+        maxWeightGrams < minWeightGrams ||
+        maxWeightGrams > 100000
+      ) {
+        throw new HttpError(400, "Enter a valid parcel weight range in grams.");
+      }
+      if (
+        String(entry.deliveryAgentRate ?? "").trim() === "" ||
+        String(entry.hubGrossRate ?? "").trim() === "" ||
+        !Number.isFinite(deliveryAgentRate) ||
+        !Number.isFinite(hubGrossRate) ||
+        deliveryAgentRate < 0 ||
+        hubGrossRate < deliveryAgentRate ||
+        hubGrossRate > 1000000
+      ) {
+        throw new HttpError(
+          400,
+          "Hub gross payout must be at least the delivery partner payout, and both rates must be non-negative.",
+        );
+      }
+      return {
+        country: country.code,
+        city,
+        currency: country.currency,
+        minWeightGrams,
+        maxWeightGrams,
+        deliveryAgentRate: round(deliveryAgentRate),
+        hubGrossRate: round(hubGrossRate),
+      };
+    });
+    for (let index = 0; index < rules.length; index += 1) {
+      for (let nextIndex = index + 1; nextIndex < rules.length; nextIndex += 1) {
+        const current = rules[index];
+        const next = rules[nextIndex];
+        if (
+          current.country === next.country &&
+          current.city.toLowerCase() === next.city.toLowerCase() &&
+          current.minWeightGrams <= next.maxWeightGrams &&
+          next.minWeightGrams <= current.maxWeightGrams
+        ) {
+          throw new HttpError(
+            400,
+            `Weight ranges overlap for ${current.city}, ${current.country}.`,
+          );
+        }
+      }
+    }
+    patch.deliveryPayoutRates = rules;
+  }
   const settings = await AdminSetting.findOneAndUpdate(
     { key: "marketplace" },
     { $set: patch, $setOnInsert: { key: "marketplace" } },
@@ -1086,6 +1289,34 @@ async function createHubStaff(admin, body) {
   return agent;
 }
 
+async function listDeliveryHubs(filters) {
+  return { hubs: await deliveryService.listHubs(filters) };
+}
+
+async function getDeliveryHubDetails(admin, id) {
+  const details = await deliveryService.getHubDetails(id);
+  await record(
+    admin,
+    "delivery_hub.profile.viewed",
+    "delivery_hub",
+    id,
+    `Full profile for hub ${details.hub.code} was viewed.`,
+  );
+  return details;
+}
+
+async function reviewHubApplication(admin, id, status) {
+  const hub = await deliveryService.reviewHubApplication(id, status);
+  await record(
+    admin,
+    `hub_application.${status.toLowerCase()}`,
+    "delivery_hub",
+    id,
+    `Hub application ${hub.code} was marked ${status}.`,
+  );
+  return hub;
+}
+
 async function getDeliveryAgentApplication(id, jwtSecret) {
   return deliveryService.getAgentApplicationReview(id, jwtSecret);
 }
@@ -1138,11 +1369,14 @@ module.exports = {
   login,
   dashboard,
   listSellers,
+  getSellerDetails,
   updateSeller,
   getSellerVerification,
   reviewSellerVerification,
   listProducts,
   moderateProduct,
+  deleteProduct,
+  deleteProducts,
   listCustomers,
   listOrders,
   listReturns,
@@ -1161,6 +1395,9 @@ module.exports = {
   getPayments,
   listDeliveryAgents,
   createHubStaff,
+  listDeliveryHubs,
+  getDeliveryHubDetails,
+  reviewHubApplication,
   getDeliveryAgentApplication,
   reviewDeliveryAgent,
   updateDeliveryAgent,

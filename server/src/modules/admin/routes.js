@@ -15,6 +15,7 @@ adminRouter.post("/categories", controller.createCategory);
 adminRouter.patch("/categories/:id", controller.updateCategory);
 adminRouter.delete("/categories/:id", controller.deleteCategory);
 adminRouter.get("/sellers", controller.sellers);
+adminRouter.get("/sellers/:id/details", controller.sellerDetails);
 adminRouter.get("/sellers/:id/verification", controller.sellerVerification);
 adminRouter.patch(
   "/sellers/:id/verification",
@@ -23,6 +24,8 @@ adminRouter.patch(
 adminRouter.patch("/sellers/:id", controller.updateSeller);
 adminRouter.get("/products", controller.products);
 adminRouter.patch("/products/:id/moderation", controller.moderateProduct);
+adminRouter.delete("/products", controller.deleteProducts);
+adminRouter.delete("/products/:id", controller.deleteProduct);
 adminRouter.get("/customers", controller.customers);
 adminRouter.get("/orders", controller.orders);
 adminRouter.get("/returns", controller.returns);
@@ -33,6 +36,12 @@ adminRouter.get("/payments", controller.payments);
 adminRouter.post("/payments/:id/cod-collected", controller.recordCodCollection);
 adminRouter.get("/delivery/agents", controller.deliveryAgents);
 adminRouter.post("/delivery/hub-staff", controller.createHubStaff);
+adminRouter.get("/delivery/hubs", controller.deliveryHubs);
+adminRouter.get("/delivery/hubs/:id/details", controller.deliveryHubDetails);
+adminRouter.patch(
+  "/delivery/hubs/:id/application",
+  controller.reviewHubApplication,
+);
 adminRouter.get(
   "/delivery/agents/:id/application",
   controller.deliveryAgentApplication,

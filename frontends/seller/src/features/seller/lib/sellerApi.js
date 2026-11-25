@@ -105,20 +105,26 @@ export const sellerApi = {
   categories: () => request("/categories"),
   products: (q = "") => request(`/products${q ? `?q=${encodeURIComponent(q)}` : ""}`),
   notifications: (options) => request("/notifications", options),
+  hubs: (options) => request("/hubs", options),
   readNotification: (id) =>
     request(`/notifications/${encodeURIComponent(id)}/read`, { method: "PATCH" }),
   createProduct: (body) => request("/products", { method: "POST", body }),
   updateProduct: (id, body) =>
     request(`/products/${encodeURIComponent(id)}`, { method: "PATCH", body }),
   deleteProduct: (id) => request(`/products/${encodeURIComponent(id)}`, { method: "DELETE" }),
+  deleteProducts: (ids) =>
+    request("/products", { method: "DELETE", body: { ids } }),
   adjustStock: (id, quantity, variantId) =>
     request(`/products/${encodeURIComponent(id)}/stock`, {
       method: "PATCH",
       body: { quantity, variantId },
     }),
   orders: () => request("/orders"),
-  scanOrder: (scanToken, location) =>
-    request("/orders/scan", { method: "POST", body: { scanToken, location } }),
+  scanOrder: (scanToken, location, packageWeightGrams) =>
+    request("/orders/scan", {
+      method: "POST",
+      body: { scanToken, location, packageWeightGrams },
+    }),
   updateOrder: (id, body) =>
     request(`/orders/${encodeURIComponent(id)}`, { method: "PATCH", body }),
   returns: () => request("/returns"),

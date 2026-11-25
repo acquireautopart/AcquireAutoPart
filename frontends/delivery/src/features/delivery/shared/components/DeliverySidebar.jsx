@@ -25,6 +25,12 @@ export const DELIVERY_SECTIONS = [
     icon: PackageCheck,
   },
   {
+    key: "Earnings",
+    label: "Earnings",
+    hint: "Daily and period payouts",
+    icon: Clock3,
+  },
+  {
     key: "Profile",
     label: "Profile",
     hint: "Account and password",
@@ -37,6 +43,7 @@ export function getDeliverySections(role) {
     return [
       { key: "Dashboard", label: "Hub scans", hint: "Facility arrivals and dispatch", icon: PackageCheck },
       DELIVERY_SECTIONS[3],
+      DELIVERY_SECTIONS[4],
     ];
   }
   return DELIVERY_SECTIONS;
@@ -103,18 +110,6 @@ export default function DeliverySidebar({
           );
         })}
 
-        <a
-          href="/#earnings"
-          className="flex items-start gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition hover:bg-slate-50"
-        >
-          <Clock3 size={16} className="mt-0.5 shrink-0" />
-          <span className="min-w-0">
-            <span className="block text-xs font-bold">Earnings</span>
-            <span className="block text-[10px] font-medium text-slate-400">
-              Payout summary
-            </span>
-          </span>
-        </a>
       </nav>
 
       <div className="border-t border-slate-100 p-3">

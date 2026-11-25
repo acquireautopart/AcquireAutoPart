@@ -36,6 +36,8 @@ export const deliveryApi = {
   },
   createApplication: (body) =>
     request("/auth/applications", { method: "POST", body }),
+  createHubApplication: (body) =>
+    request("/auth/hub-applications", { method: "POST", body }),
   uploadApplicationFile: async (token, kind, file) => {
     const response = await fetch(
       `${apiBase}/delivery/auth/applications/files`,
@@ -66,6 +68,10 @@ export const deliveryApi = {
     request("/auth/availability", { method: "PATCH", body: { isOnline } }),
   tasks: () => request("/tasks"),
   hubTasks: () => request("/hub/tasks"),
+  earnings: (from, to, timeZone) => {
+    const params = new URLSearchParams({ from, to, timeZone });
+    return request(`/earnings?${params.toString()}`);
+  },
   addEvent: (orderId, body) =>
     request(`/tasks/${encodeURIComponent(orderId)}/events`, {
       method: "POST",

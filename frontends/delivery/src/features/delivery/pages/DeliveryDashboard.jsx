@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   AlertCircle,
   Camera,
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 import DeliveryShell from "@/features/delivery/shared/components/DeliveryShell";
 import { getDeliverySections } from "@/features/delivery/shared/components/DeliverySidebar";
+import EarningsPanel from "@/features/delivery/components/EarningsPanel";
 import { deliveryApi } from "@/features/delivery/lib/deliveryApi";
 
 const NEXT_EVENTS = {
@@ -29,6 +31,7 @@ const NEXT_EVENTS = {
   "RTO In Transit": ["RTO Delivered"],
 };
 const HUB_NEXT_EVENTS = {
+  Packed: ["Picked Up"],
   "Picked Up": ["Arrived at Origin Hub"],
   "Arrived at Origin Hub": ["In Transit"],
   "In Transit": ["Arrived at Facility", "Reached Destination Hub"],
@@ -100,7 +103,7 @@ function SignIn({ onSuccess }) {
         </p>
         <h1 className="mt-1 text-2xl font-extrabold">Delivery staff sign in</h1>
         <p className="mt-2 text-sm text-neutral-500">
-          Use the account and temporary password provided by your administrator.
+          Delivery partners apply online. Hub in-charges can register a hub and sign in after admin approval.
         </p>
         <label className="mt-5 block text-xs font-bold">
           Workspace
@@ -143,6 +146,14 @@ function SignIn({ onSuccess }) {
             className="mt-1.5 h-11 w-full rounded-lg border border-neutral-200 px-3 text-sm"
           />
         </label>
+        {staffRole === "hub_staff" && (
+          <Link
+            href="/hub/register"
+            className="mt-3 inline-block text-xs font-bold text-orange-700 underline"
+          >
+            Register a hub
+          </Link>
+        )}
         <button
           disabled={busy}
           className="mt-5 h-11 w-full rounded-lg bg-brand text-sm font-bold text-white disabled:opacity-50"
@@ -154,7 +165,7 @@ function SignIn({ onSuccess }) {
   );
 }
 
-function LocationAccessGate({ checking, busy, error, onEnable }) {
+function LocationAccessGate({ checking, busy, error, onEnable, onViewEarnings }) {
   return (
     <main className="grid min-h-screen place-items-center bg-slate-50 p-5">
       <section className="w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-lg">
@@ -184,6 +195,13 @@ function LocationAccessGate({ checking, busy, error, onEnable }) {
             {busy ? "Checking location…" : "Enable location"}
           </button>
         )}
+        <button
+          type="button"
+          onClick={onViewEarnings}
+          className="mt-3 h-10 rounded-lg border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700"
+        >
+          View earnings without location
+        </button>
       </section>
     </main>
   );
@@ -332,6 +350,7 @@ function TaskCard({ task, scanned, pendingEvent, onSubmitEvent, agent }) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const isHubStaff = agent.staffRole === "hub_staff";
+  const isPickupTask = task.taskType === "pickup";
   const options = [
     ...(task.taskType === "reverse"
       ? (isHubStaff ? REVERSE_HUB_EVENTS : REVERSE_DRIVER_EVENTS)[task.trackingStatus] || []
@@ -426,11 +445,21 @@ function TaskCard({ task, scanned, pendingEvent, onSubmitEvent, agent }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-[10px] font-extrabold tracking-widest text-neutral-400">
-            {task.taskType === "reverse" ? task.returnType : task.carrier || "COURIER"} ·{" "}
-            {task.taskType === "reverse" ? "Request" : "AWB"} {task.tracking}
+            {isPickupTask
+              ? "NEW SELLER PICKUP"
+              : task.taskType === "reverse"
+                ? task.returnType
+                : task.carrier || "COURIER"}{" "}
+            · {isPickupTask || task.taskType === "reverse" ? "Order" : "AWB"}{" "}
+            {task.orderCode || task.tracking}
           </p>
           <h2 className="mt-1 text-lg font-extrabold">
-            {task.taskType === "reverse" ? task.returnType : "Order"} #{task.orderCode}
+            {isPickupTask
+              ? "Seller pickup"
+              : task.taskType === "reverse"
+                ? task.returnType
+                : "Order"}{" "}
+            #{task.orderCode}
           </h2>
           <p className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-brand">
             <PackageCheck size={14} /> {task.trackingStatus}
@@ -447,8 +476,26 @@ function TaskCard({ task, scanned, pendingEvent, onSubmitEvent, agent }) {
         )}
       </div>
 
+      {isPickupTask && (
+        <p role="status" className="mt-3 rounded-lg bg-orange-50 p-3 text-xs font-semibold text-orange-900">
+          {task.pickup.storeName} has packed this order. Go to the seller address and scan the package to confirm pickup.
+        </p>
+      )}
       <div className="mt-4 grid gap-4 border-t border-neutral-100 pt-4 sm:grid-cols-2">
-        <div>
+        {isPickupTask ? (
+          <div>
+            <p className="text-xs font-bold">{task.pickup.storeName}</p>
+            <p className="mt-1 flex items-start gap-1.5 text-xs text-neutral-500">
+              <MapPin size={14} className="mt-0.5 shrink-0" />{" "}
+              {[task.pickup.address, task.pickup.postalCode].filter(Boolean).join(", ")}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-3 text-xs font-semibold text-brand">
+              {task.pickup.phone && <a href={`tel:${task.pickup.phone}`}>Call seller</a>}
+              {task.pickup.email && <a href={`mailto:${task.pickup.email}`}>Email seller</a>}
+            </div>
+          </div>
+        ) : (
+          <div>
           <p className="text-xs font-bold">{task.customer.name}</p>
           <p className="mt-1 flex items-start gap-1.5 text-xs text-neutral-500">
             <MapPin size={14} className="mt-0.5 shrink-0" />{" "}
@@ -462,12 +509,19 @@ function TaskCard({ task, scanned, pendingEvent, onSubmitEvent, agent }) {
               <Phone size={13} /> {task.customer.phone}
             </a>
           )}
-        </div>
+          </div>
+        )}
         <div className="text-xs text-neutral-500">
-          <p>
+          {task.packageWeightGrams != null && (
+            <p>
+              Package weight:{" "}
+              <b className="text-neutral-800">{task.packageWeightGrams} g</b>
+            </p>
+          )}
+          {!isPickupTask && <p>
             Payment: <b className="text-neutral-800">{task.paymentMethod}</b>
-          </p>
-          {task.paymentMethod === "Cash on delivery" && (
+          </p>}
+          {!isPickupTask && task.paymentMethod === "Cash on delivery" && (
             <p className="mt-1">
               COD due:{" "}
               <b className="text-neutral-800">
@@ -475,7 +529,7 @@ function TaskCard({ task, scanned, pendingEvent, onSubmitEvent, agent }) {
               </b>
             </p>
           )}
-          <p className="mt-1">Attempts: {task.deliveryAttempts} / 3</p>
+          {!isPickupTask && <p className="mt-1">Attempts: {task.deliveryAttempts} / 3</p>}
         </div>
       </div>
 
@@ -1004,13 +1058,14 @@ export default function DeliveryDashboard() {
         }}
       />
     );
-  if (!locationReady) {
+  if (!locationReady && !["Earnings", "Profile"].includes(activeSection)) {
     return (
       <LocationAccessGate
         checking={locationStatus === "initializing" || locationBusy}
         busy={locationBusy}
         error={locationError}
         onEnable={enableLocation}
+        onViewEarnings={() => setActiveSection("Earnings")}
       />
     );
   }
@@ -1020,7 +1075,11 @@ export default function DeliveryDashboard() {
   );
   const displayedTasks =
     activeSection === "New orders"
-      ? activeTasks.filter((task) => task.trackingStatus === "Ready for Pickup")
+      ? activeTasks.filter(
+          (task) =>
+            task.taskType === "pickup" ||
+            task.trackingStatus === "Ready for Pickup",
+        )
       : activeSection === "My deliveries"
         ? activeTasks.filter((task) => task.trackingStatus !== "Ready for Pickup")
         : activeTasks;
@@ -1155,12 +1214,6 @@ export default function DeliveryDashboard() {
                 {label}
               </button>
             ))}
-            <a
-              href="/#earnings"
-              className="shrink-0 rounded-md px-3 py-1.5 text-[10px] font-semibold text-slate-500"
-            >
-              Earnings
-            </a>
           </nav>
         </header>
 
@@ -1176,17 +1229,20 @@ export default function DeliveryDashboard() {
                   : activeSection}
               </h2>
               <p className="mt-1 text-xs text-slate-500">
-                {activeTasks.length} active package
-                {activeTasks.length === 1 ? "" : "s"} assigned to you
+                {activeSection === "Earnings"
+                  ? "Payouts from customer-verified deliveries"
+                  : `${activeTasks.length} active package${activeTasks.length === 1 ? "" : "s"} assigned to you`}
               </p>
             </div>
-            <button
-              onClick={() => setScanOpen(true)}
-              disabled={!activeTasks.length}
-              className="inline-flex h-10 items-center gap-2 rounded-lg bg-orange-600 px-4 text-xs font-bold text-white disabled:opacity-50"
-            >
-              <Camera size={15} /> Scan package
-            </button>
+            {activeSection !== "Earnings" && (
+              <button
+                onClick={() => setScanOpen(true)}
+                disabled={!activeTasks.length}
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-orange-600 px-4 text-xs font-bold text-white disabled:opacity-50"
+              >
+                <Camera size={15} /> Scan package
+              </button>
+            )}
           </section>
 
           {error && (
@@ -1324,9 +1380,13 @@ export default function DeliveryDashboard() {
               <div className="grid gap-4 md:grid-cols-[1.1fr_.9fr]">
                 <section className="space-y-3 rounded-lg border border-slate-200 bg-white p-4">
                   <div>
-                    <h3 className="text-sm font-extrabold">Scan and act</h3>
+                    <h3 className="text-sm font-extrabold">
+                      {agent.staffRole === "hub_staff" ? "Pickup inbox and hub tasks" : "Scan and act"}
+                    </h3>
                     <p className="mt-1 text-[10px] text-slate-500">
-                      Scan a parcel label to record its next verified status.
+                      {agent.staffRole === "hub_staff"
+                        ? "New Packed seller orders appear here. Scan a package when it is collected."
+                        : "Scan a parcel label to record its next verified status."}
                     </p>
                   </div>
                   {activeTasks.map((task) => {
@@ -1455,7 +1515,13 @@ export default function DeliveryDashboard() {
             </>
           )}
 
-          {activeSection !== "Dashboard" && activeSection !== "Profile" && (
+          {activeSection === "Earnings" && (
+            <EarningsPanel staffRole={agent.staffRole} />
+          )}
+
+          {activeSection !== "Dashboard" &&
+            activeSection !== "Profile" &&
+            activeSection !== "Earnings" && (
             <section className="space-y-3">
               {displayedTasks.map((task) => {
                 const taskKey = `${task.orderId}:${task.sellerId}`;

@@ -22,6 +22,12 @@ export function SettingsForm({ seller, onSubmit, busy }) {
             hint="Where delivery partners pick up your parcels"
           />
         </div>
+        <Field
+          label="Pickup postal / PIN code"
+          name="pickupPostalCode"
+          defaultValue={seller.pickupPostalCode || ""}
+          placeholder="Used to route Packed orders to a pickup hub"
+        />
         <div className="mt-4">
           <span className="block text-xs font-bold text-neutral-600 dark:text-neutral-300">
             Marketplace country and currency

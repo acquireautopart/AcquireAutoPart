@@ -21,6 +21,7 @@ test("delivery tracking follows the parcel's forward-only scan sequence", () => 
       true,
     );
   }
+  assert.equal(deliveryService.canTransition("Packed", "Picked Up"), true);
   assert.equal(
     deliveryService.canTransition("Ready for Pickup", "Delivered"),
     false,

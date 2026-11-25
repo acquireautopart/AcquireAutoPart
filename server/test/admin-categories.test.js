@@ -6,6 +6,7 @@ const Category = require("../src/modules/admin/models/Category");
 const categoryService = require("../src/modules/admin/categoryService");
 const adminService = require("../src/modules/admin/service");
 const Product = require("../src/modules/seller/models/Product");
+const defaultCategories = require("../../categories.json");
 
 const categoryId = "507f1f77bcf86cd799439011";
 
@@ -30,6 +31,41 @@ function mockCategorySetup(category) {
   mock.method(Category, "findOne", async () => category);
   mock.method(AuditLog, "create", async () => ({}));
 }
+
+test("default category initialization stores subcategory names as strings", async () => {
+  let operations;
+  mock.method(Category, "bulkWrite", async (updates) => {
+    operations = updates;
+    return {};
+  });
+  mock.method(Product, "find", () => ({
+    select() {
+      return this;
+    },
+    lean: async () => [],
+  }));
+
+  try {
+    await categoryService.ensureInitialized();
+    assert.deepEqual(
+      operations.map((operation) => operation.updateOne.filter),
+      defaultCategories.map((category) => ({
+        $or: [{ slug: category.slug }, { name: category.name }],
+      })),
+    );
+    const storedCategories = operations.map(
+      (operation) => operation.updateOne.update.$setOnInsert,
+    );
+    assert.deepEqual(
+      storedCategories.map((category) => category.subcategories),
+      defaultCategories.map((category) =>
+        category.subcategories.map((subcategory) => subcategory.name),
+      ),
+    );
+  } finally {
+    mock.restoreAll();
+  }
+});
 
 test("admin category updates rename product references and refresh storefront prices", async () => {
   const category = makeCategory();

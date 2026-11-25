@@ -46,6 +46,12 @@ export function OrdersSection({ orders, currency, onUpdate }) {
               </td>
               <td className="px-4 py-4">
                 <Status value={o.fulfillment} />
+                {o.assignedHub && (
+                  <div className="mt-1 text-[10px] text-neutral-500">
+                    <span className="block font-semibold">{o.assignedHub.name}</span>
+                    <span>{o.hubPickupStatus || "Pickup requested"}</span>
+                  </div>
+                )}
                 {o.events?.length > 0 && (
                   <details className="mt-1 max-w-56">
                     <summary className="cursor-pointer text-[10px] font-semibold text-neutral-500">
@@ -84,12 +90,29 @@ export function OrdersSection({ orders, currency, onUpdate }) {
                   disabled={["Delivered", "Cancelled"].includes(o.fulfillment)}
                   onChange={(e) => {
                     const value = e.target.value;
+                    const packageWeight =
+                      value === "Packed"
+                        ? window.prompt(
+                            "Enter the actual packed parcel weight in grams",
+                            o.packageWeightGrams ? String(o.packageWeightGrams) : "",
+                          )
+                        : "";
+                    if (packageWeight === null) return;
                     const carrier = value === "Shipped" ? window.prompt("Carrier (optional)", o.carrier || "") : "";
                     if (carrier === null) return;
                     const tracking = value === "Shipped" ? window.prompt("Tracking number (optional)", o.tracking || "") : "";
                     if (tracking === null) return;
                     const trackingUrl = value === "Shipped" ? window.prompt("Carrier tracking URL (optional)", o.trackingUrl || "") : "";
-                    if (trackingUrl !== null) onUpdate(o.id, value, value === "Shipped" ? { carrier, tracking, trackingUrl } : {});
+                    if (trackingUrl !== null)
+                      onUpdate(
+                        o.id,
+                        value,
+                        value === "Shipped"
+                          ? { carrier, tracking, trackingUrl }
+                          : value === "Packed"
+                            ? { packageWeightGrams: Number(packageWeight) }
+                            : {},
+                      );
                   }}
                   className="rounded-md border border-neutral-200 bg-white px-2 py-1.5 text-[10px] dark:border-neutral-700 dark:bg-neutral-900"
                 >

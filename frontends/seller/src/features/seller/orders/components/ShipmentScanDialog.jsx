@@ -8,6 +8,8 @@ export function ShipmentScanDialog({ onClose, onScan }) {
   const controlsRef = useRef(null);
   const scanningRef = useRef(false);
   const inputRef = useRef(null);
+  const weightInputRef = useRef(null);
+  const weightRef = useRef("");
   const [cameraActive, setCameraActive] = useState(true);
   const [busy, setBusy] = useState(false);
   const [scanValue, setScanValue] = useState("");
@@ -25,7 +27,8 @@ export function ShipmentScanDialog({ onClose, onScan }) {
       setCameraActive(false);
       controlsRef.current?.stop();
       try {
-        const result = await onScan(token);
+        const weight = weightRef.current.trim();
+        const result = await onScan(token, weight ? Number(weight) : undefined);
         setNotice(
           `Package updated to ${result.fulfillment}. ${
             result.fulfillment === "Shipped"
@@ -34,6 +37,8 @@ export function ShipmentScanDialog({ onClose, onScan }) {
           }`,
         );
         setScanValue("");
+        weightRef.current = "";
+        if (weightInputRef.current) weightInputRef.current.value = "";
       } catch (scanError) {
         setError(scanError.message || "Could not update this package.");
       } finally {
@@ -163,6 +168,26 @@ export function ShipmentScanDialog({ onClose, onScan }) {
             </span>
           </label>
         </form>
+
+        <label className="mt-3 block text-xs font-bold text-neutral-600 dark:text-neutral-300">
+          Actual packed parcel weight (grams)
+          <input
+            ref={weightInputRef}
+            type="number"
+            min="1"
+            max="100000"
+            step="1"
+            onChange={(event) => {
+              weightRef.current = event.target.value;
+            }}
+            placeholder="Required on the first scan to Packed"
+            disabled={busy}
+            className="mt-1.5 h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm outline-none focus:border-orange-400 dark:border-neutral-700 dark:bg-neutral-900"
+          />
+          <span className="mt-1 block font-normal text-neutral-500">
+            Leave blank when scanning a package that is already packed.
+          </span>
+        </label>
 
         {notice && (
           <p role="status" className="mt-3 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-700">

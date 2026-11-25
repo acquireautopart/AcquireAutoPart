@@ -5,6 +5,7 @@ const HttpError = require("../../utils/HttpError");
 const imageStorage = require("./imageStorage");
 const sellerNotifications = require("./notifications");
 const { resolveCountry } = require("../market/service");
+const hubService = require("../delivery/hubService");
 
 const COOKIE = "seller_session";
 const COOKIE_AGE = 7 * 24 * 60 * 60 * 1000;
@@ -25,6 +26,7 @@ function publicSeller(seller) {
     phone: seller.phone || "",
     storeName: seller.storeName,
     address: seller.address || "",
+    pickupPostalCode: seller.pickupPostalCode || "",
     taxId: seller.taxId || "",
     sellCategories: seller.sellCategories || [],
     country: seller.country || "",
@@ -180,6 +182,9 @@ async function updateProduct(req, res) {
 async function deleteProduct(req, res) {
   return res.json(await service.deleteProduct(req.seller._id, req.params.id));
 }
+async function deleteProducts(req, res) {
+  return res.json(await service.deleteProducts(req.seller._id, req.body?.ids));
+}
 async function adjustStock(req, res) {
   return res.json({
     product: await service.adjustStock(
@@ -198,6 +203,7 @@ async function scanOrder(req, res) {
       req.seller._id,
       req.body?.scanToken,
       req.body?.location,
+      req.body?.packageWeightGrams,
     ),
   });
 }
@@ -212,6 +218,7 @@ async function updateOrder(req, res) {
       req.body?.carrier,
       req.body?.trackingUrl,
       req.body?.location,
+      req.body?.packageWeightGrams,
     ),
   });
 }
@@ -251,6 +258,9 @@ async function settings(req, res) {
   return res.json({
     seller: await service.updateSettings(req.seller._id, req.body || {}),
   });
+}
+async function hubs(req, res) {
+  return res.json(await hubService.listSellerHubs(req.seller.country || ""));
 }
 async function payouts(req, res) {
   return res.json({
@@ -320,6 +330,7 @@ module.exports = {
   uploadProductImage,
   updateProduct,
   deleteProduct,
+  deleteProducts,
   adjustStock,
   orders,
   scanOrder,
@@ -331,6 +342,7 @@ module.exports = {
   updateDiscount,
   deleteDiscount,
   settings,
+  hubs,
   payouts,
   stripeConnectStatus,
   createStripeConnectLink,

@@ -36,6 +36,7 @@ sellerRouter.get("/connect/status", controller.stripeConnectStatus);
 sellerRouter.post("/connect/account-link", controller.createStripeConnectLink);
 sellerRouter.get("/notifications", controller.notifications);
 sellerRouter.patch("/notifications/:id/read", controller.readNotification);
+sellerRouter.get("/hubs", controller.hubs);
 sellerRouter.put(
   "/verification/document",
   express.raw({
@@ -81,6 +82,7 @@ sellerRouter.post(
 );
 sellerRouter.post("/products", controller.createProduct);
 sellerRouter.patch("/products/:id", controller.updateProduct);
+sellerRouter.delete("/products", controller.deleteProducts);
 sellerRouter.delete("/products/:id", controller.deleteProduct);
 sellerRouter.patch("/products/:id/stock", controller.adjustStock);
 sellerRouter.get("/orders", controller.orders);

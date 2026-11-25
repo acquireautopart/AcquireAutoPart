@@ -3,7 +3,15 @@ import { date } from "@/features/admin/shared/components/utils";
 import { Button, Empty, Panel, PanelTitle, Status } from "@/features/admin/shared/components/ui";
 import SearchBox from "@/features/admin/marketplace/components/SearchBox";
 
-export function SellersSection({ sellers, search, setSearch, onUpdate, onReview, onDecision }) {
+export function SellersSection({
+  sellers,
+  search,
+  setSearch,
+  onUpdate,
+  onReview,
+  onDecision,
+  onDetails,
+}) {
   return (
     <Panel className="overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
@@ -54,6 +62,7 @@ export function SellersSection({ sellers, search, setSearch, onUpdate, onReview,
                 <td className="px-4 py-3 text-neutral-500">{date(s.createdAt)}</td>
                 <td className="px-4 py-3">
                   <div className="flex gap-1">
+                    <Button onClick={() => onDetails(s.id)}>View details</Button>
                     {s.status === "Approved" ? (
                       <Button onClick={() => onUpdate(s.id, "Suspended")}>Suspend</Button>
                     ) : s.documentSubmittedAt && s.verificationStatus === "Pending" ? (

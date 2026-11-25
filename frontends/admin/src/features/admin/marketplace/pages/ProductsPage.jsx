@@ -9,21 +9,64 @@ import { adminApi } from "@/features/admin/lib/adminApi";
 export default function ProductsPage() {
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
 
   useEffect(() => {
+    let active = true;
+    setError("");
     adminApi
       .products(query)
-      .then((data) => setProducts(data.products || []))
-      .catch(() => setProducts([]));
+      .then((data) => {
+        if (active) setProducts(data.products || []);
+      })
+      .catch((loadError) => {
+        if (active) setError(loadError.message);
+      });
+    return () => {
+      active = false;
+    };
   }, [query]);
+
+  async function refreshProducts() {
+    const data = await adminApi.products(query);
+    setProducts(data.products || []);
+  }
 
   async function handleModerate(id, action) {
     try {
       await adminApi.moderateProduct(id, action);
-      const data = await adminApi.products(query);
-      setProducts(data.products || []);
-    } catch (error) {
-      console.error(error);
+      await refreshProducts();
+      setError("");
+      setNotice("Product listing updated.");
+    } catch (actionError) {
+      setError(actionError.message);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      await adminApi.deleteProduct(id);
+      await refreshProducts();
+      setError("");
+      setNotice("Product deleted. Order records were kept.");
+      return true;
+    } catch (deleteError) {
+      setError(deleteError.message);
+      return false;
+    }
+  }
+
+  async function handleDeleteMany(ids) {
+    try {
+      const result = await adminApi.deleteProducts(ids);
+      await refreshProducts();
+      setError("");
+      setNotice(`${result.deletedCount} product(s) deleted. Order records were kept.`);
+      return true;
+    } catch (deleteError) {
+      setError(deleteError.message);
+      return false;
     }
   }
 
@@ -35,6 +78,10 @@ export default function ProductsPage() {
         search={query}
         setSearch={setQuery}
         onModerate={handleModerate}
+        onDelete={handleDelete}
+        onDeleteMany={handleDeleteMany}
+        error={error}
+        notice={notice}
       />
     </AdminPageLayout>
   );

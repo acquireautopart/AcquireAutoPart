@@ -40,7 +40,7 @@ function normalizeSubcategories(value) {
   return result;
 }
 
-function getMarkupPercent(categoryName, categories) {
+function findMarkupPercent(categoryName, categories) {
   const category = categories.find(
     (entry) =>
       entry.name.toLowerCase() === String(categoryName || "").trim().toLowerCase(),
@@ -67,9 +67,11 @@ async function backfillStorefrontPrices() {
     $or: [
       { storefrontPrice: { $exists: false } },
       { storefrontCompareAtPrice: { $exists: false } },
+      { storefrontPrice: 0, price: { $gt: 0 } },
+      { storefrontCompareAtPrice: 0, compareAtPrice: { $gt: 0 } },
     ],
   })
-    .select("category price compareAtPrice")
+    .select("category price compareAtPrice +storefrontPrice")
     .lean();
   if (!products.length) return;
 
@@ -82,7 +84,7 @@ async function backfillStorefrontPrices() {
       update: {
         $set: productPriceFields(
           product,
-          getMarkupPercent(product.category, categories),
+          findMarkupPercent(product.category, categories),
         ),
       },
     },
@@ -96,12 +98,16 @@ async function ensureInitialized() {
       await Category.bulkWrite(
         defaults.map((category) => ({
           updateOne: {
-            filter: { slug: category.slug },
+            filter: {
+              $or: [{ slug: category.slug }, { name: category.name }],
+            },
             update: {
               $setOnInsert: {
                 name: category.name,
                 slug: category.slug,
-                subcategories: category.subcategories,
+                subcategories: category.subcategories.map((subcategory) =>
+                  typeof subcategory === "string" ? subcategory : subcategory.name,
+                ),
                 markupPercent: 0,
                 active: true,
               },
@@ -286,20 +292,32 @@ async function prepareProducts(products) {
     ...product,
     ...productPriceFields(
       product,
-      getMarkupPercent(product.category, categories),
+      findMarkupPercent(product.category, categories),
     ),
   }));
 }
 
 function applyStorefrontPrices(product, markupPercent) {
+  const hasUsablePrice =
+    product.storefrontPrice != null &&
+    Number.isFinite(Number(product.storefrontPrice)) &&
+    (Number(product.storefrontPrice) > 0 || Number(product.price) === 0);
+  const hasUsableCompareAtPrice =
+    product.storefrontCompareAtPrice != null &&
+    Number.isFinite(Number(product.storefrontCompareAtPrice)) &&
+    (Number(product.storefrontCompareAtPrice) > 0 ||
+      Number(product.compareAtPrice) === 0);
   const output = {
     ...product,
-    price: product.storefrontPrice ?? storefrontPrice(product.price, markupPercent),
+    price: hasUsablePrice
+      ? Number(product.storefrontPrice)
+      : storefrontPrice(product.price, markupPercent),
     compareAtPrice:
-      product.storefrontCompareAtPrice ??
-      (product.compareAtPrice == null
+      product.compareAtPrice == null
         ? null
-        : storefrontPrice(product.compareAtPrice, markupPercent)),
+        : hasUsableCompareAtPrice
+          ? Number(product.storefrontCompareAtPrice)
+          : storefrontPrice(product.compareAtPrice, markupPercent),
   };
   delete output.storefrontPrice;
   delete output.storefrontCompareAtPrice;

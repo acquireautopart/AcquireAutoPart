@@ -38,6 +38,8 @@ export const adminApi = {
   deleteCategory: (id) =>
     request(`/categories/${encodeURIComponent(id)}`, { method: "DELETE" }),
   sellers: (q = "") => request(`/sellers${q ? `?q=${encodeURIComponent(q)}` : ""}`),
+  sellerDetails: (id) =>
+    request(`/sellers/${encodeURIComponent(id)}/details`),
   sellerVerification: (id) => request(`/sellers/${encodeURIComponent(id)}/verification`),
   reviewSellerVerification: (id, status, note = "") =>
     request(`/sellers/${encodeURIComponent(id)}/verification`, {
@@ -52,6 +54,10 @@ export const adminApi = {
       method: "PATCH",
       body: { action },
     }),
+  deleteProduct: (id) =>
+    request(`/products/${encodeURIComponent(id)}`, { method: "DELETE" }),
+  deleteProducts: (ids) =>
+    request("/products", { method: "DELETE", body: { ids } }),
   customers: (q = "") => request(`/customers${q ? `?q=${encodeURIComponent(q)}` : ""}`),
   orders: (q = "") => request(`/orders${q ? `?q=${encodeURIComponent(q)}` : ""}`),
   returns: () => request("/returns"),
@@ -76,6 +82,21 @@ export const adminApi = {
   },
   createHubStaff: (body) =>
     request("/delivery/hub-staff", { method: "POST", body }),
+  deliveryHubs: (filters = {}) => {
+    const query = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) query.set(key, value);
+    });
+    const search = query.toString();
+    return request(`/delivery/hubs${search ? `?${search}` : ""}`);
+  },
+  deliveryHubDetails: (id) =>
+    request(`/delivery/hubs/${encodeURIComponent(id)}/details`),
+  reviewHubApplication: (id, status) =>
+    request(`/delivery/hubs/${encodeURIComponent(id)}/application`, {
+      method: "PATCH",
+      body: { status },
+    }),
   deliveryAgentApplication: (id) =>
     request(`/delivery/agents/${encodeURIComponent(id)}/application`),
   reviewDeliveryAgent: (id, body) =>

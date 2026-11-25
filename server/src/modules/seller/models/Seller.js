@@ -30,6 +30,7 @@ const sellerSchema = new mongoose.Schema(
     },
     storeName: { type: String, trim: true, default: "", maxlength: 120 },
     address: { type: String, trim: true, default: "", maxlength: 1000 },
+    pickupPostalCode: { type: String, trim: true, default: "", maxlength: 24 },
     taxId: { type: String, trim: true, default: "", maxlength: 40 },
     sellCategories: { type: [String], default: [] },
     country: { type: String, enum: [...countryCodes, ""], default: "" },

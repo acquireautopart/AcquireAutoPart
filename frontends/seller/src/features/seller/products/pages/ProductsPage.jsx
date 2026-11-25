@@ -53,8 +53,15 @@ export function ProductsPage(props) {
           setModal("product");
         }}
         onDelete={(p) =>
-          window.confirm(`Delete ${p.name}? This cannot be undone.`) &&
-          run(() => sellerApi.deleteProduct(p.id), "Product deleted")
+          window.confirm(
+            `Remove ${p.name} from your catalogue? It will no longer appear in your store; order records will be kept.`,
+          ) && run(() => sellerApi.deleteProduct(p.id), "Product deleted")
+        }
+        onDeleteMany={(ids) =>
+          run(
+            () => sellerApi.deleteProducts(ids),
+            `${ids.length} product(s) deleted`,
+          )
         }
       />
     </>

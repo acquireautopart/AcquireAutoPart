@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const mongoose = require("mongoose");
 const Seller = require("./models/Seller");
 const Customer = require("../customer/models/Customer");
 const PasswordReset = require("./models/PasswordReset");
@@ -27,6 +28,7 @@ const {
 const { triggerProductAlerts } = require("../customer/profile/service");
 const { Resend } = require("resend");
 const categoryService = require("../admin/categoryService");
+const hubService = require("../delivery/hubService");
 
 function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -347,7 +349,7 @@ async function resetPassword({ token, password }) {
   await PasswordReset.deleteMany({ seller: reset.seller });
 }
 async function listProducts(sellerId, query = {}) {
-  const filter = { seller: sellerId };
+  const filter = { seller: sellerId, deletedAt: null };
   if (["Active", "Draft", "Archived"].includes(query.status))
     filter.status = query.status;
   if (query.q)
@@ -380,7 +382,11 @@ async function createProduct(sellerId, body) {
   );
 }
 async function updateProduct(sellerId, id, body) {
-  const previous = await Product.findOne({ _id: id, seller: sellerId }).lean();
+  const previous = await Product.findOne({
+    _id: id,
+    seller: sellerId,
+    deletedAt: null,
+  }).lean();
   if (!previous) throw new HttpError(404, "Product not found in your catalogue.");
   const cleaned = cleanProduct(body, true);
   const categorySelection = await categoryService.validateProductCategory(
@@ -392,7 +398,7 @@ async function updateProduct(sellerId, id, body) {
   const next = { ...previous, ...cleaned };
   const prepared = await categoryService.prepareProduct(next);
   const product = await Product.findOneAndUpdate(
-    { _id: id, seller: sellerId },
+    { _id: id, seller: sellerId, deletedAt: null },
     {
       $set: {
         ...cleaned,
@@ -406,20 +412,43 @@ async function updateProduct(sellerId, id, body) {
   return serializeProduct(product);
 }
 async function deleteProduct(sellerId, id) {
+  if (!mongoose.isValidObjectId(id))
+    throw new HttpError(404, "Product not found in your catalogue.");
+  const deletedAt = new Date();
   const product = await Product.findOneAndUpdate(
-    { _id: id, seller: sellerId },
-    { $set: { status: "Archived" } },
+    { _id: id, seller: sellerId, deletedAt: null },
+    { $set: { status: "Archived", deletedAt } },
     { new: true },
   ).lean();
   if (!product)
     throw new HttpError(404, "Product not found in your catalogue.");
-  return { id, status: product.status };
+  return { id, deletedAt: product.deletedAt };
+}
+async function deleteProducts(sellerId, ids) {
+  if (
+    !Array.isArray(ids) ||
+    ids.length < 1 ||
+    ids.length > 500 ||
+    ids.some((id) => !mongoose.isValidObjectId(id))
+  ) {
+    throw new HttpError(400, "Select between 1 and 500 valid products.");
+  }
+  const uniqueIds = [...new Set(ids.map(String))];
+  const result = await Product.updateMany(
+    { seller: sellerId, _id: { $in: uniqueIds }, deletedAt: null },
+    { $set: { status: "Archived", deletedAt: new Date() } },
+  );
+  return { deletedCount: result.modifiedCount };
 }
 async function adjustStock(sellerId, id, body) {
   const delta = Number(body.quantity);
   if (!Number.isInteger(delta) || delta === 0 || Math.abs(delta) > 100000)
     throw new HttpError(400, "Enter a non-zero whole-number stock adjustment.");
-  const product = await Product.findOne({ _id: id, seller: sellerId });
+  const product = await Product.findOne({
+    _id: id,
+    seller: sellerId,
+    deletedAt: null,
+  });
   if (!product)
     throw new HttpError(404, "Product not found in your catalogue.");
   const previous = product.toObject();
@@ -547,6 +576,8 @@ async function getDashboard(seller, timezoneOffset = 0) {
       storeName: seller.storeName,
       email: seller.email,
       country: seller.country || "",
+      address: seller.address || "",
+      pickupPostalCode: seller.pickupPostalCode || "",
       verified: seller.verified,
       verificationStatus:
         seller.identityVerification?.status || "Not submitted",
@@ -592,7 +623,11 @@ async function listOrders(sellerId, query = {}) {
   const orders = await Order.find({ "items.productId": { $in: productIds } })
     .sort({ placedAt: -1 })
     .limit(200)
-    .populate("customer", "name email");
+    .populate("customer", "name email")
+    .populate(
+      "sellerFulfillments.assignedHub",
+      "name phone email whatsapp address",
+    );
   for (const order of orders) {
     let sellerState = order.sellerFulfillments.find(
       (state) => state.seller.toString() === sellerId.toString(),
@@ -648,6 +683,17 @@ async function listOrders(sellerId, query = {}) {
     paymentMethod: o.payment?.method || "",
     fulfillment: fulfillmentFor(o, sellerId),
     trackingStatus: sellerState?.trackingStatus || "",
+    assignedHub: sellerState?.assignedHub
+      ? {
+          id: sellerState.assignedHub._id.toString(),
+          name: sellerState.assignedHub.name,
+          phone: sellerState.assignedHub.phone || "",
+          email: sellerState.assignedHub.email || "",
+          whatsapp: sellerState.assignedHub.whatsapp || "",
+          address: sellerState.assignedHub.address || "",
+        }
+      : null,
+    hubPickupStatus: sellerState?.hubPickupStatus || "",
     events: (sellerState?.events || []).map((event) => ({
       status: event.status,
       occurredAt: event.occurredAt,
@@ -663,6 +709,7 @@ async function listOrders(sellerId, query = {}) {
     })),
     placedAt: o.placedAt,
     scanToken: sellerState?.scanToken,
+    packageWeightGrams: sellerState?.packageWeightGrams ?? null,
     currency: o.currency || "USD",
     totals: o.totals,
     address: o.address,
@@ -687,6 +734,7 @@ async function updateOrder(
   carrier,
   trackingUrl,
   locationInput,
+  packageWeightGrams,
 ) {
   if (!["Packed", "Shipped", "Delivered", "Cancelled"].includes(fulfillment))
     throw new HttpError(400, "Choose a valid fulfillment status.");
@@ -714,10 +762,37 @@ async function updateOrder(
       "Update seller fulfillment in order: New, Packed, then Shipped.",
     );
   }
+  const parsedPackageWeight = Number(packageWeightGrams);
+  if (
+    fulfillment === "Packed" &&
+    (!Number.isInteger(parsedPackageWeight) ||
+      parsedPackageWeight < 1 ||
+      parsedPackageWeight > 100000)
+  ) {
+    throw new HttpError(
+      400,
+      "Enter the actual packed parcel weight in grams (1–100,000).",
+    );
+  }
   if (order.payment?.method === "Stripe" && !order.payment.paid) {
     throw new HttpError(
       409,
       "Wait for Stripe payment confirmation before updating fulfillment.",
+    );
+  }
+  if (
+    fulfillment === "Shipped" &&
+    ["seller_manual", "seller_scan"].includes(source) &&
+    previousFulfillment === "Packed" &&
+    order.sellerFulfillments.some(
+      (state) =>
+        state.seller.toString() === sellerId.toString() &&
+        state.hubPickupStatus === "Pending",
+    )
+  ) {
+    throw new HttpError(
+      409,
+      "The assigned hub must scan this package before it can be marked shipped.",
     );
   }
   if (order.status === "Cancelled" || order.status === "Delivered")
@@ -780,14 +855,33 @@ async function updateOrder(
     order.sellerFulfillments.push({ seller: sellerId, status: fulfillment });
     sellerState = order.sellerFulfillments[order.sellerFulfillments.length - 1];
   }
+  let pickupHub = null;
+  if (fulfillment === "Packed") {
+    const seller = await Seller.findById(sellerId)
+      .select("country pickupPostalCode")
+      .lean();
+    pickupHub = await hubService.findPickupHub(
+      seller?.country || "",
+      seller?.pickupPostalCode || "",
+    );
+  }
   sellerState.status = fulfillment;
   sellerState.updatedAt = new Date();
+  if (pickupHub) {
+    sellerState.assignedHub = pickupHub._id;
+    sellerState.hubPickupStatus = "Pending";
+  }
   if (fulfillment === "Packed" || fulfillment === "Shipped") {
     sellerState.trackingStatus = fulfillment;
+  }
+  if (fulfillment === "Packed") {
+    sellerState.packageWeightGrams = parsedPackageWeight;
   }
   if (fulfillment === "Cancelled") {
     sellerState.trackingStatus = "Cancelled";
     sellerState.assignedDeliveryAgent = null;
+    sellerState.assignedHub = null;
+    sellerState.hubPickupStatus = "Cancelled";
     sellerState.deliveryOtpEncrypted = "";
     sellerState.deliveryOtpExpiresAt = null;
   }
@@ -872,7 +966,7 @@ async function updateOrder(
   };
 }
 
-async function scanOrder(sellerId, scanToken, location) {
+async function scanOrder(sellerId, scanToken, location, packageWeightGrams) {
   const token = String(scanToken || "").trim();
   if (!/^[a-f\d]{64}$/i.test(token)) {
     throw new HttpError(400, "Scan a valid AcquireAuto package QR or barcode.");
@@ -916,6 +1010,7 @@ async function scanOrder(sellerId, scanToken, location) {
     undefined,
     undefined,
     location,
+    packageWeightGrams,
   );
 }
 async function listReturns(sellerId) {
@@ -1329,6 +1424,13 @@ async function updateSettings(sellerId, body) {
     settings.name = String(body.name).trim().slice(0, 80);
   if (body.address !== undefined)
     settings.address = String(body.address).trim().slice(0, 1000);
+  if (body.pickupPostalCode !== undefined) {
+    const pickupPostalCode = String(body.pickupPostalCode).trim().toUpperCase();
+    if (pickupPostalCode.length < 2 || pickupPostalCode.length > 24) {
+      throw new HttpError(400, "Enter a valid pickup postal code.");
+    }
+    settings.pickupPostalCode = pickupPostalCode;
+  }
   if (body.taxId !== undefined)
     settings.taxId = String(body.taxId).trim().slice(0, 40);
   if (Array.isArray(body.sellCategories))
@@ -1514,6 +1616,7 @@ async function publicCatalog(query = {}) {
     seller: { $in: approvedSellers },
     status: "Active",
     stock: { $gt: 0 },
+    deletedAt: null,
   };
   const searchTerms = String(query.q || "")
     .trim()
@@ -1725,18 +1828,21 @@ async function publicCatalog(query = {}) {
       seller: { $in: approvedSellers },
       status: "Active",
       stock: { $gt: 0 },
+      deletedAt: null,
       brand: { $type: "string", $ne: "" },
     }),
     Product.distinct("category", {
       seller: { $in: approvedSellers },
       status: "Active",
       stock: { $gt: 0 },
+      deletedAt: null,
       category: { $type: "string", $ne: "" },
     }),
     Product.distinct("fitment", {
       seller: { $in: approvedSellers },
       status: "Active",
       stock: { $gt: 0 },
+      deletedAt: null,
       fitment: { $type: "string", $ne: "" },
     }),
     sortKey === "top-rated"
@@ -1822,6 +1928,7 @@ async function publicProduct(id, requestedCountry) {
           seller: { $in: approvedSellers },
           status: "Active",
           stock: { $gt: 0 },
+          deletedAt: null,
         },
         { $inc: { viewCount: 1 } },
         { new: true },
@@ -2032,6 +2139,7 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct,
+  deleteProducts,
   adjustStock,
   getDashboard,
   getPayoutSummary,
@@ -2042,6 +2150,7 @@ module.exports = {
   listOrders,
   updateOrder,
   scanOrder,
+  notifyCustomerShipment,
   nextScannedFulfillment,
   listReturns,
   updateReturn,
