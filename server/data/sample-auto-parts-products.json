@@ -1,0 +1,3830 @@
+[
+  {
+    "sku": "SAMPLE-AUTO-001",
+    "partNumber": "AA-BRA-0001",
+    "name": "Ceramic Front Brake Pad Set",
+    "description": "Sample catalog listing for ceramic front brake pad set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 49.99,
+    "compareAtPrice": 57.49,
+    "stock": 15,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.duralastparts.com/img/brakes/title3.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-002",
+    "partNumber": "AA-BRA-0002",
+    "name": "Front Brake Rotor Pair",
+    "description": "Sample catalog listing for front brake rotor pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 118.5,
+    "compareAtPrice": 136.27,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.autodoc.de/thumb?id=17361442&lng=en&m=0&n=0&rev=94078007"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-003",
+    "partNumber": "AA-BRA-0003",
+    "name": "Front Brake Caliper Assembly",
+    "description": "Sample catalog listing for front brake caliper assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 89.75,
+    "compareAtPrice": 103.21,
+    "stock": 29,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.partsfinder.bilsteingroup.com/pf-article-zoomed/1/182278_3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-004",
+    "partNumber": "AA-BRA-0004",
+    "name": "Rear Brake Pad and Rotor Kit",
+    "description": "Sample catalog listing for rear brake pad and rotor kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 164.99,
+    "compareAtPrice": 189.74,
+    "stock": 36,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://static.summitracing.com/global/images/prod/xlarge/pwr-kcoe5975_el_xl.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-005",
+    "partNumber": "AA-BRA-0005",
+    "name": "Brake Master Cylinder",
+    "description": "Sample catalog listing for brake master cylinder. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 78.25,
+    "compareAtPrice": 89.99,
+    "stock": 43,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.partsfinder.bilsteingroup.com/pf-article-zoomed/1/182278_3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-006",
+    "partNumber": "AA-BRA-0006",
+    "name": "Brake Booster Assembly",
+    "description": "Sample catalog listing for brake booster assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 189.0,
+    "compareAtPrice": 217.35,
+    "stock": 13,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://static.summitracing.com/global/images/prod/xlarge/pwr-kcoe5975_el_xl.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-007",
+    "partNumber": "AA-BRA-0007",
+    "name": "Rear Drum Brake Shoe Set",
+    "description": "Sample catalog listing for rear drum brake shoe set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 42.5,
+    "compareAtPrice": 48.87,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.duralastparts.com/img/brakes/title3.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-008",
+    "partNumber": "AA-BRA-0008",
+    "name": "Front Brake Hose Pair",
+    "description": "Sample catalog listing for front brake hose pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 38.99,
+    "compareAtPrice": 44.84,
+    "stock": 27,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://static.summitracing.com/global/images/prod/xlarge/pwr-kcoe5975_el_xl.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-009",
+    "partNumber": "AA-BRA-0009",
+    "name": "ABS Wheel Speed Sensor",
+    "description": "Sample catalog listing for abs wheel speed sensor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 29.75,
+    "compareAtPrice": 34.21,
+    "stock": 34,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.partsfinder.bilsteingroup.com/pf-article-zoomed/1/182278_3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-010",
+    "partNumber": "AA-BRA-0010",
+    "name": "Parking Brake Cable Kit",
+    "description": "Sample catalog listing for parking brake cable kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 54.95,
+    "compareAtPrice": 63.19,
+    "stock": 41,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://static.summitracing.com/global/images/prod/xlarge/pwr-kcoe5975_el_xl.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-011",
+    "partNumber": "AA-BRA-0011",
+    "name": "Brake Pad Wear Sensor",
+    "description": "Sample catalog listing for brake pad wear sensor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda CR-V 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "CR-V",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 17.5,
+    "compareAtPrice": 20.12,
+    "stock": 11,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.duralastparts.com/img/brakes/title3.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-012",
+    "partNumber": "AA-BRA-0012",
+    "name": "Brake Hardware and Clip Kit",
+    "description": "Sample catalog listing for brake hardware and clip kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Brake System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Kia Sportage 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Kia",
+        "model": "Sportage",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 23.99,
+    "compareAtPrice": 27.59,
+    "stock": 18,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://static.summitracing.com/global/images/prod/xlarge/pwr-kcoe5975_el_xl.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Brake Pads"
+  },
+  {
+    "sku": "SAMPLE-AUTO-013",
+    "partNumber": "AA-ENG-0013",
+    "name": "Engine Water Pump Assembly",
+    "description": "Sample catalog listing for engine water pump assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 82.99,
+    "compareAtPrice": 95.44,
+    "stock": 25,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/1430/5014/files/Water-Pump-for-Hyundai-Accent-RB-Elantra-AD-Tucson-i20-i30-Kia-Rio-UB-Spoilers-and-Bodykits-Australia.png?v=1719104329"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-014",
+    "partNumber": "AA-ENG-0014",
+    "name": "120 Amp Alternator Assembly",
+    "description": "Sample catalog listing for 120 amp alternator assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 189.0,
+    "compareAtPrice": 217.35,
+    "stock": 32,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.europaparts.com/media/catalog/product/cache/7eb369f27775f2db92648609527c34e5/0/1/0111546402.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-015",
+    "partNumber": "AA-ENG-0015",
+    "name": "Turbocharger Assembly",
+    "description": "Sample catalog listing for turbocharger assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Hyundai Tucson 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Hyundai",
+        "model": "Tucson",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 649.0,
+    "compareAtPrice": 746.35,
+    "stock": 39,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autoersatzteile.de/360_photos/13029043/preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-016",
+    "partNumber": "AA-ENG-0016",
+    "name": "Iridium Spark Plug Set of Four",
+    "description": "Sample catalog listing for iridium spark plug set of four. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.99,
+    "compareAtPrice": 40.24,
+    "stock": 9,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autodoc.de/360_photos/1042900/h-preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-017",
+    "partNumber": "AA-ENG-0017",
+    "name": "Fuel Injector Set of Four",
+    "description": "Sample catalog listing for fuel injector set of four. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 159.99,
+    "compareAtPrice": 183.99,
+    "stock": 16,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-018",
+    "partNumber": "AA-ENG-0018",
+    "name": "Aluminum Engine Radiator",
+    "description": "Sample catalog listing for aluminum engine radiator. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 129.5,
+    "compareAtPrice": 148.92,
+    "stock": 23,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://radiatornow.com/cdn/shop/products/13525_MAIN_31397b28-33a3-4ebd-9398-0609074acc38_700x700.jpg?v=1595827028"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-019",
+    "partNumber": "AA-ENG-0019",
+    "name": "A/C Compressor with Clutch",
+    "description": "Sample catalog listing for a/c compressor with clutch. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 249.0,
+    "compareAtPrice": 286.35,
+    "stock": 30,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autodoc.de/360_photos/8013404/h-preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-020",
+    "partNumber": "AA-ENG-0020",
+    "name": "Serpentine Belt and Tensioner Kit",
+    "description": "Sample catalog listing for serpentine belt and tensioner kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 74.95,
+    "compareAtPrice": 86.19,
+    "stock": 37,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/1430/5014/files/Water-Pump-for-Hyundai-Accent-RB-Elantra-AD-Tucson-i20-i30-Kia-Rio-UB-Spoilers-and-Bodykits-Australia.png?v=1719104329"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-021",
+    "partNumber": "AA-ENG-0021",
+    "name": "Engine Mount Pair",
+    "description": "Sample catalog listing for engine mount pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 88.0,
+    "compareAtPrice": 101.2,
+    "stock": 44,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-022",
+    "partNumber": "AA-ENG-0022",
+    "name": "Timing Chain and Guide Kit",
+    "description": "Sample catalog listing for timing chain and guide kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 174.99,
+    "compareAtPrice": 201.24,
+    "stock": 14,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/1430/5014/files/Water-Pump-for-Hyundai-Accent-RB-Elantra-AD-Tucson-i20-i30-Kia-Rio-UB-Spoilers-and-Bodykits-Australia.png?v=1719104329"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-023",
+    "partNumber": "AA-ENG-0023",
+    "name": "Exhaust Manifold Gasket Set",
+    "description": "Sample catalog listing for exhaust manifold gasket set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Forester 2014-2018",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2018,
+        "make": "Subaru",
+        "model": "Forester",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.5,
+    "compareAtPrice": 45.42,
+    "stock": 21,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autoersatzteile.de/360_photos/13029043/preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-024",
+    "partNumber": "AA-ENG-0024",
+    "name": "Clutch and Flywheel Kit",
+    "description": "Sample catalog listing for clutch and flywheel kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Engine Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 299.0,
+    "compareAtPrice": 343.85,
+    "stock": 28,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://clutchdirect.com.au/cdn/shop/products/VDMRxxxxNHD3_3de8dd5c-5df0-4b3f-abb3-ee1778dde43d_1200x1200.jpg?v=1668752337"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Pistons"
+  },
+  {
+    "sku": "SAMPLE-AUTO-025",
+    "partNumber": "AA-LIG-0025",
+    "name": "Driver-Side Headlight Assembly",
+    "description": "Sample catalog listing for driver-side headlight assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 145.99,
+    "compareAtPrice": 167.89,
+    "stock": 35,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-026",
+    "partNumber": "AA-LIG-0026",
+    "name": "Passenger-Side Headlight Assembly",
+    "description": "Sample catalog listing for passenger-side headlight assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 145.99,
+    "compareAtPrice": 167.89,
+    "stock": 42,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-027",
+    "partNumber": "AA-LIG-0027",
+    "name": "LED Tail Light Assembly",
+    "description": "Sample catalog listing for led tail light assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 118.5,
+    "compareAtPrice": 136.27,
+    "stock": 12,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://unomindakart.com/uploaded_files/productImages/TL-6702M/_DSC0936.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-028",
+    "partNumber": "AA-LIG-0028",
+    "name": "Front Fog Light Pair",
+    "description": "Sample catalog listing for front fog light pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 68.99,
+    "compareAtPrice": 79.34,
+    "stock": 19,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-029",
+    "partNumber": "AA-LIG-0029",
+    "name": "LED Headlight Bulb Pair",
+    "description": "Sample catalog listing for led headlight bulb pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 42.0,
+    "compareAtPrice": 48.3,
+    "stock": 26,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-030",
+    "partNumber": "AA-LIG-0030",
+    "name": "Front Turn Signal Lamp",
+    "description": "Sample catalog listing for front turn signal lamp. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.99,
+    "compareAtPrice": 45.99,
+    "stock": 33,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://unomindakart.com/uploaded_files/productImages/TL-6702M/_DSC0936.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-031",
+    "partNumber": "AA-LIG-0031",
+    "name": "Third Brake Light Assembly",
+    "description": "Sample catalog listing for third brake light assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 54.75,
+    "compareAtPrice": 62.96,
+    "stock": 40,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://unomindakart.com/uploaded_files/productImages/TL-6702M/_DSC0936.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-032",
+    "partNumber": "AA-LIG-0032",
+    "name": "Daytime Running Light Pair",
+    "description": "Sample catalog listing for daytime running light pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 88.99,
+    "compareAtPrice": 102.34,
+    "stock": 10,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-033",
+    "partNumber": "AA-LIG-0033",
+    "name": "Rear Bumper Reflector Pair",
+    "description": "Sample catalog listing for rear bumper reflector pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Tiguan 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Volkswagen",
+        "model": "Tiguan",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 24.5,
+    "compareAtPrice": 28.17,
+    "stock": 17,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://unomindakart.com/uploaded_files/productImages/TL-6702M/_DSC0936.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-034",
+    "partNumber": "AA-LIG-0034",
+    "name": "License Plate Lamp Assembly",
+    "description": "Sample catalog listing for license plate lamp assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Highlander 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Toyota",
+        "model": "Highlander",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 19.99,
+    "compareAtPrice": 22.99,
+    "stock": 24,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://unomindakart.com/uploaded_files/productImages/TL-6702M/_DSC0936.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-035",
+    "partNumber": "AA-LIG-0035",
+    "name": "Headlight Wiring Harness Pair",
+    "description": "Sample catalog listing for headlight wiring harness pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Explorer 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Ford",
+        "model": "Explorer",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 32.95,
+    "compareAtPrice": 37.89,
+    "stock": 31,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-036",
+    "partNumber": "AA-LIG-0036",
+    "name": "Headlight Lens Restoration Kit",
+    "description": "Sample catalog listing for headlight lens restoration kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Lighting",
+    "brand": "AcquireAuto Select",
+    "fitment": "Mazda CX-5 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Mazda",
+        "model": "CX-5",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 21.99,
+    "compareAtPrice": 25.29,
+    "stock": 38,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.autohausaz.com/images/TY-20-6236-00.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Headlights"
+  },
+  {
+    "sku": "SAMPLE-AUTO-037",
+    "partNumber": "AA-SUS-0037",
+    "name": "Front Shock Absorber Pair",
+    "description": "Sample catalog listing for front shock absorber pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 154.0,
+    "compareAtPrice": 177.1,
+    "stock": 8,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-038",
+    "partNumber": "AA-SUS-0038",
+    "name": "Strut and Coil Spring Assembly",
+    "description": "Sample catalog listing for strut and coil spring assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 199.0,
+    "compareAtPrice": 228.85,
+    "stock": 15,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-039",
+    "partNumber": "AA-SUS-0039",
+    "name": "Front Lower Control Arm",
+    "description": "Sample catalog listing for front lower control arm. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 89.5,
+    "compareAtPrice": 102.92,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-040",
+    "partNumber": "AA-SUS-0040",
+    "name": "Outer Tie Rod End Pair",
+    "description": "Sample catalog listing for outer tie rod end pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 42.99,
+    "compareAtPrice": 49.44,
+    "stock": 29,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-041",
+    "partNumber": "AA-SUS-0041",
+    "name": "Front Ball Joint Pair",
+    "description": "Sample catalog listing for front ball joint pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.99,
+    "compareAtPrice": 45.99,
+    "stock": 36,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-042",
+    "partNumber": "AA-SUS-0042",
+    "name": "Stabilizer Bar Link Kit",
+    "description": "Sample catalog listing for stabilizer bar link kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.5,
+    "compareAtPrice": 39.67,
+    "stock": 43,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-043",
+    "partNumber": "AA-SUS-0043",
+    "name": "Front CV Axle Shaft",
+    "description": "Sample catalog listing for front cv axle shaft. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 115.0,
+    "compareAtPrice": 132.25,
+    "stock": 13,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-044",
+    "partNumber": "AA-SUS-0044",
+    "name": "Power Steering Rack Assembly",
+    "description": "Sample catalog listing for power steering rack assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 389.0,
+    "compareAtPrice": 447.35,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-045",
+    "partNumber": "AA-SUS-0045",
+    "name": "Steering Rack Boot Kit",
+    "description": "Sample catalog listing for steering rack boot kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 21.99,
+    "compareAtPrice": 25.29,
+    "stock": 27,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-046",
+    "partNumber": "AA-SUS-0046",
+    "name": "Rear Wheel Bearing Hub",
+    "description": "Sample catalog listing for rear wheel bearing hub. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 79.95,
+    "compareAtPrice": 91.94,
+    "stock": 34,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-047",
+    "partNumber": "AA-SUS-0047",
+    "name": "Front Strut Mount and Bearing Kit",
+    "description": "Sample catalog listing for front strut mount and bearing kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 54.99,
+    "compareAtPrice": 63.24,
+    "stock": 41,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-048",
+    "partNumber": "AA-SUS-0048",
+    "name": "Rear Control Arm Bushing Set",
+    "description": "Sample catalog listing for rear control arm bushing set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Suspension System",
+    "brand": "AcquireAuto Select",
+    "fitment": "Hyundai Tucson 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Hyundai",
+        "model": "Tucson",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 32.5,
+    "compareAtPrice": 37.38,
+    "stock": 11,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.dragtimes.com/parts/img-large/g/DhEAAOSwL7ZlJDOj/s-l1600/Kit-Suspension-Chassis-Control-Arm-Ball-Joint-Shoc.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Shock Absorbers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-049",
+    "partNumber": "AA-ELE-0049",
+    "name": "Starter Motor Assembly",
+    "description": "Sample catalog listing for starter motor assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 159.0,
+    "compareAtPrice": 182.85,
+    "stock": 18,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.europaparts.com/media/catalog/product/cache/7eb369f27775f2db92648609527c34e5/0/1/0111546402.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-050",
+    "partNumber": "AA-ELE-0050",
+    "name": "Ignition Coil Pack",
+    "description": "Sample catalog listing for ignition coil pack. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 72.99,
+    "compareAtPrice": 83.94,
+    "stock": 25,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autodoc.de/360_photos/1042900/h-preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-051",
+    "partNumber": "AA-ELE-0051",
+    "name": "Fuel Injector Assembly",
+    "description": "Sample catalog listing for fuel injector assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 54.99,
+    "compareAtPrice": 63.24,
+    "stock": 32,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-052",
+    "partNumber": "AA-ELE-0052",
+    "name": "Oxygen Sensor Pair",
+    "description": "Sample catalog listing for oxygen sensor pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 89.95,
+    "compareAtPrice": 103.44,
+    "stock": 39,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-053",
+    "partNumber": "AA-ELE-0053",
+    "name": "Crankshaft Position Sensor",
+    "description": "Sample catalog listing for crankshaft position sensor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.5,
+    "compareAtPrice": 39.67,
+    "stock": 9,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autodoc.de/360_photos/1042900/h-preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-054",
+    "partNumber": "AA-ELE-0054",
+    "name": "Mass Air Flow Sensor",
+    "description": "Sample catalog listing for mass air flow sensor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 75.0,
+    "compareAtPrice": 86.25,
+    "stock": 16,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-055",
+    "partNumber": "AA-ELE-0055",
+    "name": "Battery Terminal Cable Set",
+    "description": "Sample catalog listing for battery terminal cable set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 25.99,
+    "compareAtPrice": 29.89,
+    "stock": 23,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.europaparts.com/media/catalog/product/cache/7eb369f27775f2db92648609527c34e5/0/1/0111546402.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-056",
+    "partNumber": "AA-ELE-0056",
+    "name": "Power Window Switch Assembly",
+    "description": "Sample catalog listing for power window switch assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 48.75,
+    "compareAtPrice": 56.06,
+    "stock": 30,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-057",
+    "partNumber": "AA-ELE-0057",
+    "name": "Engine Wiring Connector Kit",
+    "description": "Sample catalog listing for engine wiring connector kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 19.99,
+    "compareAtPrice": 22.99,
+    "stock": 37,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.europaparts.com/media/catalog/product/cache/7eb369f27775f2db92648609527c34e5/0/1/0111546402.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-058",
+    "partNumber": "AA-ELE-0058",
+    "name": "Ignition Starter Relay Pack",
+    "description": "Sample catalog listing for ignition starter relay pack. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 22.5,
+    "compareAtPrice": 25.87,
+    "stock": 44,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.autodoc.de/360_photos/1042900/h-preview.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-059",
+    "partNumber": "AA-ELE-0059",
+    "name": "Throttle Position Sensor",
+    "description": "Sample catalog listing for throttle position sensor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.99,
+    "compareAtPrice": 45.99,
+    "stock": 14,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-060",
+    "partNumber": "AA-ELE-0060",
+    "name": "Radiator Cooling Fan Motor",
+    "description": "Sample catalog listing for radiator cooling fan motor. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Electrical Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Kia Sportage 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Kia",
+        "model": "Sportage",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 112.0,
+    "compareAtPrice": 128.8,
+    "stock": 21,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://radiatornow.com/cdn/shop/products/13525_MAIN_31397b28-33a3-4ebd-9398-0609074acc38_700x700.jpg?v=1595827028"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alternator"
+  },
+  {
+    "sku": "SAMPLE-AUTO-061",
+    "partNumber": "AA-FIL-0061",
+    "name": "Panel Engine Air Filter",
+    "description": "Sample catalog listing for panel engine air filter. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 18.99,
+    "compareAtPrice": 21.84,
+    "stock": 28,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-062",
+    "partNumber": "AA-FIL-0062",
+    "name": "Cabin Air Filter with Carbon Layer",
+    "description": "Sample catalog listing for cabin air filter with carbon layer. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 22.5,
+    "compareAtPrice": 25.87,
+    "stock": 35,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-063",
+    "partNumber": "AA-FIL-0063",
+    "name": "Oil Filter Cartridge",
+    "description": "Sample catalog listing for oil filter cartridge. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 12.99,
+    "compareAtPrice": 14.94,
+    "stock": 42,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-064",
+    "partNumber": "AA-FIL-0064",
+    "name": "Spin-On Oil Filter",
+    "description": "Sample catalog listing for spin-on oil filter. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 11.5,
+    "compareAtPrice": 13.22,
+    "stock": 12,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-065",
+    "partNumber": "AA-FIL-0065",
+    "name": "Automatic Transmission Filter Kit",
+    "description": "Sample catalog listing for automatic transmission filter kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 32.99,
+    "compareAtPrice": 37.94,
+    "stock": 19,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-066",
+    "partNumber": "AA-FIL-0066",
+    "name": "Fuel Filter Assembly",
+    "description": "Sample catalog listing for fuel filter assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.95,
+    "compareAtPrice": 45.94,
+    "stock": 26,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://assets-valeo.keepeek.com/medias/domain8143/media103522/1056717-9ifq8jwpbr-preview1.png"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-067",
+    "partNumber": "AA-FIL-0067",
+    "name": "Engine Air Filter and Seal Kit",
+    "description": "Sample catalog listing for engine air filter and seal kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 26.75,
+    "compareAtPrice": 30.76,
+    "stock": 33,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-068",
+    "partNumber": "AA-FIL-0068",
+    "name": "Heavy-Duty Cabin Filter Pair",
+    "description": "Sample catalog listing for heavy-duty cabin filter pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 29.0,
+    "compareAtPrice": 33.35,
+    "stock": 40,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-069",
+    "partNumber": "AA-FIL-0069",
+    "name": "Power Steering Filter Kit",
+    "description": "Sample catalog listing for power steering filter kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 24.5,
+    "compareAtPrice": 28.17,
+    "stock": 10,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-070",
+    "partNumber": "AA-FIL-0070",
+    "name": "PCV Valve and Breather Filter",
+    "description": "Sample catalog listing for pcv valve and breather filter. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 17.99,
+    "compareAtPrice": 20.69,
+    "stock": 17,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://cdn.shopify.com/s/files/1/1430/5014/files/Water-Pump-for-Hyundai-Accent-RB-Elantra-AD-Tucson-i20-i30-Kia-Rio-UB-Spoilers-and-Bodykits-Australia.png?v=1719104329"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-071",
+    "partNumber": "AA-FIL-0071",
+    "name": "Oil Filter Housing Assembly",
+    "description": "Sample catalog listing for oil filter housing assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 69.0,
+    "compareAtPrice": 79.35,
+    "stock": 24,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://sct-catalogue.de/imgbank/Image/public/images/Bilder_Filtr/SB2226h.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-072",
+    "partNumber": "AA-FIL-0072",
+    "name": "Transmission Cooler Filter",
+    "description": "Sample catalog listing for transmission cooler filter. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Filters",
+    "brand": "AcquireAuto Select",
+    "fitment": "Mazda CX-5 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Mazda",
+        "model": "CX-5",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 28.95,
+    "compareAtPrice": 33.29,
+    "stock": 31,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://radiatornow.com/cdn/shop/products/13525_MAIN_31397b28-33a3-4ebd-9398-0609074acc38_700x700.jpg?v=1595827028"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Air Filters"
+  },
+  {
+    "sku": "SAMPLE-AUTO-073",
+    "partNumber": "AA-EXT-0073",
+    "name": "Front Bumper Cover",
+    "description": "Sample catalog listing for front bumper cover. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 219.0,
+    "compareAtPrice": 251.85,
+    "stock": 38,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-074",
+    "partNumber": "AA-EXT-0074",
+    "name": "Front Bumper Grille",
+    "description": "Sample catalog listing for front bumper grille. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 74.99,
+    "compareAtPrice": 86.24,
+    "stock": 8,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://ic.carid.com/replace/items/fo1036209_0.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-075",
+    "partNumber": "AA-EXT-0075",
+    "name": "Power Side Mirror Assembly",
+    "description": "Sample catalog listing for power side mirror assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 119.0,
+    "compareAtPrice": 136.85,
+    "stock": 15,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-076",
+    "partNumber": "AA-EXT-0076",
+    "name": "Exterior Door Handle Assembly",
+    "description": "Sample catalog listing for exterior door handle assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.5,
+    "compareAtPrice": 39.67,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-077",
+    "partNumber": "AA-EXT-0077",
+    "name": "Front Fender Liner Pair",
+    "description": "Sample catalog listing for front fender liner pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 49.99,
+    "compareAtPrice": 57.49,
+    "stock": 29,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-078",
+    "partNumber": "AA-EXT-0078",
+    "name": "Hood Lift Support Pair",
+    "description": "Sample catalog listing for hood lift support pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 28.99,
+    "compareAtPrice": 33.34,
+    "stock": 36,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-079",
+    "partNumber": "AA-EXT-0079",
+    "name": "Rear Bumper Retainer Kit",
+    "description": "Sample catalog listing for rear bumper retainer kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 22.0,
+    "compareAtPrice": 25.3,
+    "stock": 43,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://ic.carid.com/replace/items/fo1036209_0.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-080",
+    "partNumber": "AA-EXT-0080",
+    "name": "Splash Guard and Mud Flap Set",
+    "description": "Sample catalog listing for splash guard and mud flap set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 58.95,
+    "compareAtPrice": 67.79,
+    "stock": 13,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-081",
+    "partNumber": "AA-EXT-0081",
+    "name": "Radiator Support Panel",
+    "description": "Sample catalog listing for radiator support panel. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 139.0,
+    "compareAtPrice": 159.85,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://ic.carid.com/replace/items/fo1036209_0.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-082",
+    "partNumber": "AA-EXT-0082",
+    "name": "Front Door Weatherstrip Pair",
+    "description": "Sample catalog listing for front door weatherstrip pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 43.5,
+    "compareAtPrice": 50.02,
+    "stock": 27,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-083",
+    "partNumber": "AA-EXT-0083",
+    "name": "Underbody Engine Splash Shield",
+    "description": "Sample catalog listing for underbody engine splash shield. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 64.99,
+    "compareAtPrice": 74.74,
+    "stock": 34,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-084",
+    "partNumber": "AA-EXT-0084",
+    "name": "Front Tow Hook Cover",
+    "description": "Sample catalog listing for front tow hook cover. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Exterior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Hyundai Tucson 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Hyundai",
+        "model": "Tucson",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 18.75,
+    "compareAtPrice": 21.56,
+    "stock": 41,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://ic.carid.com/replace/items/fo1036209_0.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Car Covers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-085",
+    "partNumber": "AA-INT-0085",
+    "name": "All-Weather Floor Mat Set",
+    "description": "Sample catalog listing for all-weather floor mat set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 89.99,
+    "compareAtPrice": 103.49,
+    "stock": 11,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-086",
+    "partNumber": "AA-INT-0086",
+    "name": "Front Seat Belt Buckle Pair",
+    "description": "Sample catalog listing for front seat belt buckle pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 64.5,
+    "compareAtPrice": 74.17,
+    "stock": 18,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-087",
+    "partNumber": "AA-INT-0087",
+    "name": "Cabin Air Vent Assembly",
+    "description": "Sample catalog listing for cabin air vent assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 28.0,
+    "compareAtPrice": 32.2,
+    "stock": 25,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://www.parcatek.com/idea/nw/65/myassets/categories/1759/KAPORTA%20AKSAMLARI.png?revision=1738842691"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-088",
+    "partNumber": "AA-INT-0088",
+    "name": "Center Console Lid Assembly",
+    "description": "Sample catalog listing for center console lid assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 44.99,
+    "compareAtPrice": 51.74,
+    "stock": 32,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-089",
+    "partNumber": "AA-INT-0089",
+    "name": "Interior Door Handle Pair",
+    "description": "Sample catalog listing for interior door handle pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 32.5,
+    "compareAtPrice": 37.38,
+    "stock": 39,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-090",
+    "partNumber": "AA-INT-0090",
+    "name": "Dashboard Trim Fastener Kit",
+    "description": "Sample catalog listing for dashboard trim fastener kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 15.99,
+    "compareAtPrice": 18.39,
+    "stock": 9,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-091",
+    "partNumber": "AA-INT-0091",
+    "name": "Rear View Mirror Assembly",
+    "description": "Sample catalog listing for rear view mirror assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 59.0,
+    "compareAtPrice": 67.85,
+    "stock": 16,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-092",
+    "partNumber": "AA-INT-0092",
+    "name": "Cargo Area Liner",
+    "description": "Sample catalog listing for cargo area liner. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 79.95,
+    "compareAtPrice": 91.94,
+    "stock": 23,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-093",
+    "partNumber": "AA-INT-0093",
+    "name": "Window Regulator Assembly",
+    "description": "Sample catalog listing for window regulator assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 72.0,
+    "compareAtPrice": 82.8,
+    "stock": 30,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.carid.com/replace/items/ch1320231-3.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-094",
+    "partNumber": "AA-INT-0094",
+    "name": "Seat Recliner Handle Pair",
+    "description": "Sample catalog listing for seat recliner handle pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 18.5,
+    "compareAtPrice": 21.27,
+    "stock": 37,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-095",
+    "partNumber": "AA-INT-0095",
+    "name": "Sun Visor Pair with Vanity Mirror",
+    "description": "Sample catalog listing for sun visor pair with vanity mirror. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 64.99,
+    "compareAtPrice": 74.74,
+    "stock": 44,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.s-bol.com/Klo91J71vOlR/DkWwq7y/550x550.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-096",
+    "partNumber": "AA-INT-0096",
+    "name": "Interior Fuse Panel Cover",
+    "description": "Sample catalog listing for interior fuse panel cover. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Car Interior Accessories",
+    "brand": "AcquireAuto Select",
+    "fitment": "Kia Sportage 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Kia",
+        "model": "Sportage",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 14.75,
+    "compareAtPrice": 16.96,
+    "stock": 14,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Organizers"
+  },
+  {
+    "sku": "SAMPLE-AUTO-097",
+    "partNumber": "AA-WHE-0097",
+    "name": "Front Wheel Hub and Bearing Assembly",
+    "description": "Sample catalog listing for front wheel hub and bearing assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 98.0,
+    "compareAtPrice": 112.7,
+    "stock": 21,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-098",
+    "partNumber": "AA-WHE-0098",
+    "name": "Rear Wheel Bearing Pair",
+    "description": "Sample catalog listing for rear wheel bearing pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 76.5,
+    "compareAtPrice": 87.97,
+    "stock": 28,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-099",
+    "partNumber": "AA-WHE-0099",
+    "name": "Wheel Stud and Lug Nut Kit",
+    "description": "Sample catalog listing for wheel stud and lug nut kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 29.99,
+    "compareAtPrice": 34.49,
+    "stock": 35,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-100",
+    "partNumber": "AA-WHE-0100",
+    "name": "TPMS Tire Pressure Sensor Pair",
+    "description": "Sample catalog listing for tpms tire pressure sensor pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 62.0,
+    "compareAtPrice": 71.3,
+    "stock": 42,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-101",
+    "partNumber": "AA-WHE-0101",
+    "name": "Front CV Axle Shaft Pair",
+    "description": "Sample catalog listing for front cv axle shaft pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 189.0,
+    "compareAtPrice": 217.35,
+    "stock": 12,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-102",
+    "partNumber": "AA-WHE-0102",
+    "name": "Alloy Wheel Center Cap Set",
+    "description": "Sample catalog listing for alloy wheel center cap set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 25.5,
+    "compareAtPrice": 29.32,
+    "stock": 19,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-103",
+    "partNumber": "AA-WHE-0103",
+    "name": "Wheel Lug Nut Set of Twenty",
+    "description": "Sample catalog listing for wheel lug nut set of twenty. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.99,
+    "compareAtPrice": 45.99,
+    "stock": 26,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-104",
+    "partNumber": "AA-WHE-0104",
+    "name": "Wheel Spacer Pair",
+    "description": "Sample catalog listing for wheel spacer pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 48.0,
+    "compareAtPrice": 55.2,
+    "stock": 33,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-105",
+    "partNumber": "AA-WHE-0105",
+    "name": "Front Axle Seal Pair",
+    "description": "Sample catalog listing for front axle seal pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 19.99,
+    "compareAtPrice": 22.99,
+    "stock": 40,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-106",
+    "partNumber": "AA-WHE-0106",
+    "name": "Lug Bolt Set for Alloy Wheels",
+    "description": "Sample catalog listing for lug bolt set for alloy wheels. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.5,
+    "compareAtPrice": 39.67,
+    "stock": 10,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-107",
+    "partNumber": "AA-WHE-0107",
+    "name": "Wheel Balancing Weight Kit",
+    "description": "Sample catalog listing for wheel balancing weight kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 17.95,
+    "compareAtPrice": 20.64,
+    "stock": 17,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-108",
+    "partNumber": "AA-WHE-0108",
+    "name": "Rubber Valve Stem Kit",
+    "description": "Sample catalog listing for rubber valve stem kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Wheel & Tire Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Volkswagen Jetta 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Volkswagen",
+        "model": "Jetta",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 9.99,
+    "compareAtPrice": 11.49,
+    "stock": 24,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://drgi9xfhvf38z.cloudfront.net/misc/8swx1900743-p04-1434x1421-vblkmubzr2wck88hcivyrmlfy.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Alloy Wheels"
+  },
+  {
+    "sku": "SAMPLE-AUTO-109",
+    "partNumber": "AA-TOO-0109",
+    "name": "Mechanic Socket and Ratchet Set",
+    "description": "Sample catalog listing for mechanic socket and ratchet set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 89.0,
+    "compareAtPrice": 102.35,
+    "stock": 31,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-110",
+    "partNumber": "AA-TOO-0110",
+    "name": "Click-Type Torque Wrench",
+    "description": "Sample catalog listing for click-type torque wrench. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 54.99,
+    "compareAtPrice": 63.24,
+    "stock": 38,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-111",
+    "partNumber": "AA-TOO-0111",
+    "name": "Trim Removal Tool Kit",
+    "description": "Sample catalog listing for trim removal tool kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 19.5,
+    "compareAtPrice": 22.42,
+    "stock": 8,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-112",
+    "partNumber": "AA-TOO-0112",
+    "name": "Automotive Circuit Test Light",
+    "description": "Sample catalog listing for automotive circuit test light. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 22.99,
+    "compareAtPrice": 26.44,
+    "stock": 15,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-113",
+    "partNumber": "AA-TOO-0113",
+    "name": "Two-Ton Hydraulic Floor Jack",
+    "description": "Sample catalog listing for two-ton hydraulic floor jack. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 119.0,
+    "compareAtPrice": 136.85,
+    "stock": 22,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-114",
+    "partNumber": "AA-TOO-0114",
+    "name": "OBD-II Diagnostic Scan Tool",
+    "description": "Sample catalog listing for obd-ii diagnostic scan tool. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 79.0,
+    "compareAtPrice": 90.85,
+    "stock": 29,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-115",
+    "partNumber": "AA-TOO-0115",
+    "name": "Jack Stand Pair",
+    "description": "Sample catalog listing for jack stand pair. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 52.5,
+    "compareAtPrice": 60.37,
+    "stock": 36,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-116",
+    "partNumber": "AA-TOO-0116",
+    "name": "Digital Automotive Multimeter",
+    "description": "Sample catalog listing for digital automotive multimeter. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 39.99,
+    "compareAtPrice": 45.99,
+    "stock": 43,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-117",
+    "partNumber": "AA-TOO-0117",
+    "name": "Oil Filter Wrench Set",
+    "description": "Sample catalog listing for oil filter wrench set. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 18.75,
+    "compareAtPrice": 21.56,
+    "stock": 13,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-118",
+    "partNumber": "AA-TOO-0118",
+    "name": "Spark Plug Socket Kit",
+    "description": "Sample catalog listing for spark plug socket kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 24.5,
+    "compareAtPrice": 28.17,
+    "stock": 20,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-119",
+    "partNumber": "AA-TOO-0119",
+    "name": "Brake Caliper Piston Wind-Back Tool",
+    "description": "Sample catalog listing for brake caliper piston wind-back tool. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 34.99,
+    "compareAtPrice": 40.24,
+    "stock": 27,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://media.monotaro.id/mid01/big/Perkakas%20Tangan%2C%20Pneumatik%20%26%20Listrik/Perkakas%20Tangan/Set%20Perkakas/Double%20Door%20Type/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29/TONE%20Tool%20Set%20%28For%20Auto%20Mechanic%29%20TSB430%201set/S003295960-2.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-120",
+    "partNumber": "AA-TOO-0120",
+    "name": "Automotive Panel Clip Pliers",
+    "description": "Sample catalog listing for automotive panel clip pliers. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Automotive Tools",
+    "brand": "AcquireAuto Select",
+    "fitment": "Kia Sportage 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Kia",
+        "model": "Sportage",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 16.5,
+    "compareAtPrice": 18.97,
+    "stock": 34,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://hardwarepasal.com/src/img/product/2023-06-15-11-51-28_mqJ3ASmqIRproduct.webp"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Mechanic Tool Kits"
+  },
+  {
+    "sku": "SAMPLE-AUTO-121",
+    "partNumber": "AA-DRI-0121",
+    "name": "Clutch Disc and Pressure Plate Kit",
+    "description": "Sample catalog listing for clutch disc and pressure plate kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Corolla 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Toyota",
+        "model": "Corolla",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 229.0,
+    "compareAtPrice": 263.35,
+    "stock": 41,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://clutchdirect.com.au/cdn/shop/products/VDMRxxxxNHD3_3de8dd5c-5df0-4b3f-abb3-ee1778dde43d_1200x1200.jpg?v=1668752337"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-122",
+    "partNumber": "AA-DRI-0122",
+    "name": "Manual Transmission Gearbox Assembly",
+    "description": "Sample catalog listing for manual transmission gearbox assembly. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Civic 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Honda",
+        "model": "Civic",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 1299.0,
+    "compareAtPrice": 1493.85,
+    "stock": 11,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-123",
+    "partNumber": "AA-DRI-0123",
+    "name": "Front CV Axle Half-Shaft",
+    "description": "Sample catalog listing for front cv axle half-shaft. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford F-150 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Ford",
+        "model": "F-150",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 119.0,
+    "compareAtPrice": 136.85,
+    "stock": 18,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-124",
+    "partNumber": "AA-DRI-0124",
+    "name": "Clutch Release Bearing",
+    "description": "Sample catalog listing for clutch release bearing. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota Camry 2018-2023",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2023,
+        "make": "Toyota",
+        "model": "Camry",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 38.5,
+    "compareAtPrice": 44.27,
+    "stock": 25,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://clutchdirect.com.au/cdn/shop/products/VDMRxxxxNHD3_3de8dd5c-5df0-4b3f-abb3-ee1778dde43d_1200x1200.jpg?v=1668752337"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-125",
+    "partNumber": "AA-DRI-0125",
+    "name": "Automatic Transmission Mount",
+    "description": "Sample catalog listing for automatic transmission mount. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Honda Accord 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Honda",
+        "model": "Accord",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 46.99,
+    "compareAtPrice": 54.04,
+    "stock": 32,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-126",
+    "partNumber": "AA-DRI-0126",
+    "name": "Drive Shaft Center Support Bearing",
+    "description": "Sample catalog listing for drive shaft center support bearing. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Ford Escape 2017-2022",
+    "fitments": [
+      {
+        "yearFrom": 2017,
+        "yearTo": 2022,
+        "make": "Ford",
+        "model": "Escape",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 59.0,
+    "compareAtPrice": 67.85,
+    "stock": 39,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-127",
+    "partNumber": "AA-DRI-0127",
+    "name": "Differential Cover Gasket Kit",
+    "description": "Sample catalog listing for differential cover gasket kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Silverado 1500 2014-2019",
+    "fitments": [
+      {
+        "yearFrom": 2014,
+        "yearTo": 2019,
+        "make": "Chevrolet",
+        "model": "Silverado 1500",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 22.95,
+    "compareAtPrice": 26.39,
+    "stock": 9,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-128",
+    "partNumber": "AA-DRI-0128",
+    "name": "CV Joint Boot and Clamp Kit",
+    "description": "Sample catalog listing for cv joint boot and clamp kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Toyota RAV4 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Toyota",
+        "model": "RAV4",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 18.5,
+    "compareAtPrice": 21.27,
+    "stock": 16,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://contentassets.autozone.com/product_image/USA/18313/CFHH/B10298N/B10298N-01.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-129",
+    "partNumber": "AA-DRI-0129",
+    "name": "Transmission Shift Solenoid",
+    "description": "Sample catalog listing for transmission shift solenoid. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Chevrolet Equinox 2018-2022",
+    "fitments": [
+      {
+        "yearFrom": 2018,
+        "yearTo": 2022,
+        "make": "Chevrolet",
+        "model": "Equinox",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 74.0,
+    "compareAtPrice": 85.1,
+    "stock": 23,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-130",
+    "partNumber": "AA-DRI-0130",
+    "name": "Flywheel and Pilot Bearing Kit",
+    "description": "Sample catalog listing for flywheel and pilot bearing kit. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Subaru Outback 2015-2020",
+    "fitments": [
+      {
+        "yearFrom": 2015,
+        "yearTo": 2020,
+        "make": "Subaru",
+        "model": "Outback",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 184.99,
+    "compareAtPrice": 212.74,
+    "stock": 30,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://clutchdirect.com.au/cdn/shop/products/VDMRxxxxNHD3_3de8dd5c-5df0-4b3f-abb3-ee1778dde43d_1200x1200.jpg?v=1668752337"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-131",
+    "partNumber": "AA-DRI-0131",
+    "name": "Rear Differential Pinion Seal",
+    "description": "Sample catalog listing for rear differential pinion seal. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Nissan Altima 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Nissan",
+        "model": "Altima",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 19.99,
+    "compareAtPrice": 22.99,
+    "stock": 37,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  },
+  {
+    "sku": "SAMPLE-AUTO-132",
+    "partNumber": "AA-DRI-0132",
+    "name": "Transfer Case Output Seal",
+    "description": "Sample catalog listing for transfer case output seal. Confirm the manufacturer's exact part number, vehicle trim, engine and fitment, current price, stock, and seller photos before publishing or ordering.",
+    "category": "Drivetrain Parts",
+    "brand": "AcquireAuto Select",
+    "fitment": "Hyundai Tucson 2016-2021",
+    "fitments": [
+      {
+        "yearFrom": 2016,
+        "yearTo": 2021,
+        "make": "Hyundai",
+        "model": "Tucson",
+        "trim": "",
+        "engine": ""
+      }
+    ],
+    "price": 24.5,
+    "compareAtPrice": 28.17,
+    "stock": 44,
+    "lowStockThreshold": 5,
+    "images": [
+      "https://images.prom.ua/6857059612_w640_h640_korobka-peredach-kpp.jpg"
+    ],
+    "status": "Draft",
+    "variants": [],
+    "subcategory": "Driveshaft"
+  }
+]

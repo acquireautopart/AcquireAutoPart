@@ -1,0 +1,18 @@
+import { NextResponse } from "next/server";
+
+function sendToApp(base, request) {
+  if (!base) return new NextResponse("The destination frontend URL is not configured.", { status: 503 });
+  const destination = new URL(request.nextUrl.pathname, base);
+  destination.search = request.nextUrl.search;
+  return NextResponse.redirect(destination);
+}
+
+export function middleware(request) {
+  const path = request.nextUrl.pathname;
+  if (path.startsWith("/api/") || path.startsWith("/_next/") || /\.[^/]+$/.test(path)) return NextResponse.next();
+  if (path === "/seller" || path.startsWith("/seller/")) return sendToApp(process.env.NEXT_PUBLIC_SELLER_URL, request);
+  if (path === "/admin" || path.startsWith("/admin/")) return sendToApp(process.env.NEXT_PUBLIC_ADMIN_URL, request);
+  return NextResponse.next();
+}
+
+export const config = { matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"] };
