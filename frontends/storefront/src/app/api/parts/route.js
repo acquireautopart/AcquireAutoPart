@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { API_BASE_URL } from "@/lib/apiBase";
 
 export const dynamic = "force-dynamic";
 
@@ -26,13 +27,8 @@ export async function GET(request) {
     if (value) params.set(key, value);
   }
 
-  const apiBase = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api").replace(
-    /\/+$/,
-    "",
-  );
-
   try {
-    const response = await fetch(`${apiBase}/catalog/products?${params}`, {
+    const response = await fetch(`${API_BASE_URL}/catalog/products?${params}`, {
       cache: "no-store",
       signal: AbortSignal.timeout(8000),
     });

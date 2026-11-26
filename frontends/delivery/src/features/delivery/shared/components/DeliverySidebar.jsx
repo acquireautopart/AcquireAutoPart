@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Clock3,
   Home,
@@ -8,6 +9,7 @@ import {
   PackageCheck,
   Truck,
   UserRound,
+  X,
 } from "lucide-react";
 
 export const DELIVERY_SECTIONS = [
@@ -55,7 +57,15 @@ export default function DeliverySidebar({
   onSelectSection,
   onLogout,
 }) {
+  const [sidebarPromoVisible, setSidebarPromoVisible] = useState(false);
   const sections = getDeliverySections(agent?.staffRole);
+
+  useEffect(() => {
+    setSidebarPromoVisible(
+      localStorage.getItem("acquireauto-sidebar-promo-dismissed") !== "true",
+    );
+  }, []);
+
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col overflow-y-auto border-r border-slate-200 bg-white md:flex">
       <div className="flex items-center gap-2.5 border-b border-slate-100 px-5 py-5">
@@ -109,8 +119,35 @@ export default function DeliverySidebar({
             </button>
           );
         })}
-
       </nav>
+
+      {sidebarPromoVisible && (
+        <div className="relative mx-3 mb-3 overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-slate-900 via-slate-900 to-orange-950 p-3 text-white">
+          <button
+            type="button"
+            aria-label="Dismiss sidebar promotion"
+            onClick={() => {
+              localStorage.setItem("acquireauto-sidebar-promo-dismissed", "true");
+              setSidebarPromoVisible(false);
+            }}
+            className="absolute right-2 top-2 rounded-md p-1 text-slate-300 transition hover:bg-white/10 hover:text-white"
+          >
+            <X size={13} />
+          </button>
+          <p className="text-[9px] font-extrabold uppercase tracking-[.14em] text-orange-300">
+            Marketplace control
+          </p>
+          <p className="mt-1 pr-5 text-[10px] leading-relaxed text-slate-300">
+            Manage your catalog, partners and operations from one place.
+          </p>
+          <img
+            src="/car.png"
+            alt=""
+            aria-hidden="true"
+            className="mt-2 h-16 w-full rounded-md object-cover object-[center_48%]"
+          />
+        </div>
+      )}
 
       <div className="border-t border-slate-100 p-3">
         <button

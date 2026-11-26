@@ -16,7 +16,14 @@ import {
   Users,
 } from "lucide-react";
 import { ago, money } from "@/features/admin/shared/components/utils";
-import { Button, Empty, Panel, PanelTitle, Status } from "@/features/admin/shared/components/ui";
+import {
+  AdminHero,
+  Button,
+  Empty,
+  Panel,
+  PanelTitle,
+  Status,
+} from "@/features/admin/shared/components/ui";
 
 function SalesChart({ data = [], range, onRange, total }) {
   const rows = data.slice(-range);
@@ -123,34 +130,32 @@ export function Overview({ data, range, onRange, goTo, onSellerStatus }) {
   ];
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="text-[9px] font-extrabold tracking-[.15em] text-neutral-400">
-            ADMIN CONSOLE
-          </p>
-          <h1 className="mt-1 font-display text-2xl font-extrabold tracking-tight">
-            Marketplace overview
-          </h1>
-          <p className="mt-1 text-xs text-neutral-500">
-            A live view of platform sales, sellers and customer operations.
-          </p>
-        </div>
-        <div className="flex rounded-lg border border-neutral-200 bg-white p-1 dark:border-neutral-800 dark:bg-[#111]">
-          {[
-            [7, "7 days"],
-            [30, "30 days"],
-            [90, "90 days"],
-          ].map(([d, label]) => (
-            <button
-              key={d}
-              onClick={() => onRange(d)}
-              className={`rounded-md px-3 py-2 text-xs font-bold ${range === d ? "bg-brand text-white" : "text-neutral-500"}`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
+      <AdminHero
+        eyebrow="ADMIN CONSOLE"
+        title="Marketplace Dashboard"
+        sub="A live view of platform sales, sellers and customer operations."
+        action={
+          <div className="flex rounded-lg border border-white/50 bg-white/90 p-1 text-neutral-800 shadow-lg">
+            {[
+              [7, "7 days"],
+              [30, "30 days"],
+              [90, "90 days"],
+            ].map(([d, label]) => (
+              <button
+                key={d}
+                onClick={() => onRange(d)}
+                className={`rounded-md px-3 py-2 text-[10px] font-bold transition ${
+                  range === d
+                    ? "bg-brand text-white"
+                    : "text-neutral-600 hover:bg-orange-50"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        }
+      />
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
         {[
           [m.awaitingApproval || 0, "seller applications", "Sellers", Store],

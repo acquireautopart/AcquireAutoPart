@@ -12,6 +12,7 @@ import SiteHeader from "@/features/storefront/components/SiteHeader";
 import SiteFooter from "@/features/storefront/components/SiteFooter";
 import { formatPrice } from "@/features/storefront/lib/format";
 import { getImageUrl } from "@/features/storefront/lib/imageUrl";
+import { API_BASE_URL } from "@/lib/apiBase";
 
 function getImageSource(image) {
   return image ? getImageUrl(image) : "";
@@ -64,12 +65,8 @@ function getProductMedia(product) {
 export default async function ProductDetailPage({ params, searchParams }) {
   const { id } = await params;
   const { country = "US" } = await searchParams;
-  const apiBase = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api").replace(
-    /\/+$/,
-    "",
-  );
   const response = await fetch(
-    `${apiBase}/catalog/products/${encodeURIComponent(id)}?country=${encodeURIComponent(country)}`,
+    `${API_BASE_URL}/catalog/products/${encodeURIComponent(id)}?country=${encodeURIComponent(country)}`,
     { cache: "no-store", signal: AbortSignal.timeout(8000) },
   );
   if (response.status === 404) notFound();
@@ -121,7 +118,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
       category: product.category,
       pageSize: "5",
     });
-    const relatedResponse = await fetch(`${apiBase}/catalog/products?${relatedParams}`, {
+    const relatedResponse = await fetch(`${API_BASE_URL}/catalog/products?${relatedParams}`, {
       cache: "no-store",
       signal: AbortSignal.timeout(8000),
     });

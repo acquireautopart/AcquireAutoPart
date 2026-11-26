@@ -392,7 +392,6 @@ async function updateProduct(sellerId, id, body) {
   const categorySelection = await categoryService.validateProductCategory(
     cleaned.category ?? previous.category,
     cleaned.subcategory ?? previous.subcategory,
-    previous,
   );
   Object.assign(cleaned, categorySelection);
   const next = { ...previous, ...cleaned };
@@ -1942,11 +1941,7 @@ async function publicProduct(id, requestedCountry) {
     : null;
   if (!product) return null;
   const sellerTrust = await getPublicSellerTrust(product.seller);
-  const category = await categoryService.listCategories({ includeMarkup: true });
-  const markupPercent =
-    category.find(
-      (entry) => entry.name.toLowerCase() === String(product.category || "").toLowerCase(),
-    )?.markupPercent || 0;
+  const markupPercent = await categoryService.getMarkupPercent(product.category);
   const [productRating] = await Review.aggregate([
     { $match: { product: product._id } },
     { $group: { _id: null, ratingAverage: { $avg: "$rating" }, ratingCount: { $sum: 1 } } },

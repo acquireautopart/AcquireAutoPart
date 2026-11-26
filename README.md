@@ -38,9 +38,10 @@ npm run dev
 
 Seller login/dashboard runs at <http://localhost:3001>; admin login/console runs at
 <http://localhost:3002>. Each folder has its own `package.json`, lockfile, and `.env.example`.
-Copy its env example to `.env.local` and configure `NEXT_PUBLIC_API_URL` if the shared API is at
-another address. Each frontend has its own build, start, and lint scripts; the storefront, seller,
-and admin apps also include formatting scripts.
+Copy its env example to `.env.local` and set `NEXT_PUBLIC_API_URL` to the backend origin in that
+frontend's environment (for example, `http://localhost:5000`). The app adds `/api` automatically;
+an existing value ending in `/api` is also accepted. Each frontend has its own build, start, and
+lint scripts; the storefront, seller, and admin apps also include formatting scripts.
 
 Run the independently deployable delivery workspace on port `3003`:
 
@@ -102,9 +103,9 @@ Deploy each frontend folder as its own Next.js application and attach one domain
 
 Point each DNS name at its matching frontend deployment. Set `NEXT_PUBLIC_STORE_URL`,
 `NEXT_PUBLIC_SELLER_URL`, and `NEXT_PUBLIC_ADMIN_URL` in the storefront, seller, and admin apps so
-cross-portal links open the correct domain. Set `NEXT_PUBLIC_API_URL` in each app to the shared API
-URL. Set the API's `FRONTEND_URL` to a comma-separated allowlist containing all four exact HTTPS
-origins. Seller and
+cross-portal links open the correct domain. Set `NEXT_PUBLIC_API_URL` in each app's environment
+to the shared API origin. Set the API's `FRONTEND_URL` to a comma-separated allowlist containing
+all four exact HTTPS origins. Seller and
 admin sign-in opens its dashboard on that frontend's root URL. Replace the local URLs in each
 `.env.example` with the domains you own before deploying. The API retains role-specific
 authorization and separate customer, seller, admin, and delivery-agent sessions. Delivery accounts

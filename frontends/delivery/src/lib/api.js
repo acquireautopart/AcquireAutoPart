@@ -1,6 +1,6 @@
-const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"
-).replace(/\/+$/, "");
+import { API_BASE_URL } from "@/lib/apiBase";
+
+const API_URL = API_BASE_URL;
 
 /**
  * Thin fetch wrapper around the AcquireAuto API.

@@ -24,6 +24,21 @@ test("category markup is applied to public product and variant prices", () => {
   assert.equal("storefrontCompareAtPrice" in product, false);
 });
 
+test("current category markup overrides a stale cached storefront price", () => {
+  const product = categoryService.applyStorefrontPrices(
+    {
+      price: 100,
+      compareAtPrice: 125,
+      storefrontPrice: 100,
+      storefrontCompareAtPrice: 125,
+    },
+    12.5,
+  );
+
+  assert.equal(product.price, 112.5);
+  assert.equal(product.compareAtPrice, 140.63);
+});
+
 test("zero storefront cache values do not hide valid product prices", () => {
   const product = categoryService.applyStorefrontPrices(
     {
@@ -84,6 +99,51 @@ test("storefront initialization backfills stale zero prices from seller prices",
         (condition) => condition.storefrontPrice === 0 && condition.price.$gt === 0,
       ),
     );
+    assert.equal(writes[0].updateOne.update.$set.storefrontPrice, 112.5);
+    assert.equal(
+      writes[0].updateOne.update.$set.storefrontCompareAtPrice,
+      140.63,
+    );
+  } finally {
+    mock.restoreAll();
+  }
+});
+
+test("category markup refresh matches product categories without case sensitivity", async () => {
+  let writes;
+  mock.method(Category, "bulkWrite", async () => ({}));
+  mock.method(Product, "find", (filter) => {
+    if (filter.category instanceof RegExp) {
+      assert.equal(filter.category.test("brake SYSTEM"), true);
+      return {
+        select() {
+          return this;
+        },
+        lean: async () => [
+          {
+            _id: "product-id",
+            category: "brake SYSTEM",
+            price: 100,
+            compareAtPrice: 125,
+          },
+        ],
+      };
+    }
+    return {
+      select() {
+        return this;
+      },
+      lean: async () => [],
+    };
+  });
+  mock.method(Product, "bulkWrite", async (operations) => {
+    writes = operations;
+    return {};
+  });
+
+  try {
+    await categoryService.updateCategoryPrices("Brake System", 12.5);
+    assert.equal(writes.length, 1);
     assert.equal(writes[0].updateOne.update.$set.storefrontPrice, 112.5);
     assert.equal(
       writes[0].updateOne.update.$set.storefrontCompareAtPrice,

@@ -955,17 +955,57 @@ async function updateSettings(admin, body) {
   return settings;
 }
 async function listCategories() {
-  return { categories: await categoryService.listCategories({ includeMarkup: true }) };
+  const [categories, categoryStats, categoryDates, totalProducts] =
+    await Promise.all([
+      categoryService.listCategories({
+        includeMarkup: true,
+        includeImages: true,
+      }),
+      Product.aggregate([
+        { $match: { deletedAt: null } },
+        {
+          $group: {
+            _id: "$category",
+            productCount: { $sum: 1 },
+            image: { $first: { $arrayElemAt: ["$images", 0] } },
+          },
+        },
+      ]),
+      Category.find({ deletedAt: null }).select("slug updatedAt").lean(),
+      Product.countDocuments({ deletedAt: null }),
+    ]);
+  const statsByCategory = new Map(
+    categoryStats.map((stats) => [stats._id, stats]),
+  );
+  const updatedBySlug = new Map(
+    categoryDates.map((category) => [category.slug, category.updatedAt]),
+  );
+  return {
+    totalProducts,
+    categories: categories.map((category) => {
+      const stats = statsByCategory.get(category.name);
+      return {
+        ...category,
+        productCount: stats?.productCount || 0,
+        image: category.image || stats?.image || "",
+        subcategoryImages: category.subcategoryImages || [],
+        updatedAt: updatedBySlug.get(category.slug) || null,
+      };
+    }),
+  };
 }
 async function createCategory(admin, body) {
   await categoryService.ensureInitialized();
   const name = String(body.name || "").trim().slice(0, 80);
   const slug = categoryService.slugify(name);
   const markupPercent = Number(body.markupPercent);
+  const image = String(body.image || "").trim();
   if (!name || !slug)
     throw new HttpError(400, "Enter a valid category name.");
   if (!Number.isFinite(markupPercent) || markupPercent < 0 || markupPercent > 100)
     throw new HttpError(400, "Category markup must be between 0 and 100%.");
+  if (image && !/^https?:\/\/\S+$/i.test(image))
+    throw new HttpError(400, "Enter a valid HTTP or HTTPS category image URL.");
   const subcategories = categoryService.normalizeSubcategories(body.subcategories);
   let category;
   let restored = false;
@@ -975,6 +1015,7 @@ async function createCategory(admin, body) {
       throw new HttpError(409, "A category with that name already exists.");
     existing.name = name;
     existing.slug = slug;
+    if (body.image !== undefined) existing.image = image;
     existing.subcategories = subcategories;
     existing.markupPercent = markupPercent;
     existing.active = true;
@@ -987,6 +1028,7 @@ async function createCategory(admin, body) {
       category = await Category.create({
         name,
         slug,
+        image,
         subcategories,
         markupPercent,
       });
@@ -996,6 +1038,10 @@ async function createCategory(admin, body) {
       throw error;
     }
   }
+  await categoryService.updateCategoryPrices(
+    category.name,
+    category.active ? category.markupPercent : 0,
+  );
   await record(
     admin,
     restored ? "category.restored" : "category.created",
@@ -1003,9 +1049,11 @@ async function createCategory(admin, body) {
     category._id,
     `${restored ? "Restored" : "Added"} category ${category.name}.`,
   );
-  return categoryService.listCategories({ includeMarkup: true }).then((result) =>
-    result.categories.find((entry) => entry.id === category._id.toString()),
-  );
+  return categoryService
+    .listCategories({ includeMarkup: true, includeImages: true })
+    .then((result) =>
+      result.categories.find((entry) => entry.id === category._id.toString()),
+    );
 }
 async function updateCategory(admin, id, body) {
   if (!mongoose.isValidObjectId(id))
@@ -1031,15 +1079,21 @@ async function updateCategory(admin, id, body) {
   }
   if (body.subcategories !== undefined)
     patch.subcategories = categoryService.normalizeSubcategories(body.subcategories);
+  if (body.image !== undefined) {
+    const image = String(body.image || "").trim();
+    if (image && !/^https?:\/\/\S+$/i.test(image))
+      throw new HttpError(400, "Enter a valid HTTP or HTTPS category image URL.");
+    patch.image = image;
+  }
   if (body.active !== undefined) patch.active = Boolean(body.active);
   if (!Object.keys(patch).length)
     throw new HttpError(
       400,
-      "Provide a category name, markup, subcategories, or status.",
+      "Provide a category name, image, markup, subcategories, or status.",
     );
   if (patch.subcategories) {
     const incompatibleProducts = await Product.countDocuments({
-      category: oldName,
+      category: categoryService.categoryNamePattern(oldName),
       subcategory: { $nin: patch.subcategories },
     });
     if (incompatibleProducts) {
@@ -1059,7 +1113,7 @@ async function updateCategory(admin, id, body) {
   }
   if (oldName !== category.name) {
     await Product.updateMany(
-      { category: oldName },
+      { category: categoryService.categoryNamePattern(oldName) },
       { $set: { category: category.name } },
     );
   }
@@ -1084,7 +1138,8 @@ async function updateCategory(admin, id, body) {
     id: category._id.toString(),
     name: category.name,
     slug: category.slug,
-    subcategories: category.subcategories,
+    image: category.image || "",
+    subcategories: categoryService.subcategoryNames(category.subcategories),
     markupPercent: category.markupPercent,
     active: category.active,
   };
@@ -1096,7 +1151,7 @@ async function deleteCategory(admin, id) {
   const category = await Category.findOne({ _id: id, deletedAt: null });
   if (!category) throw new HttpError(404, "Category not found.");
   const productCount = await Product.countDocuments({
-    category: category.name,
+    category: categoryService.categoryNamePattern(category.name),
   });
   if (productCount) {
     throw new HttpError(

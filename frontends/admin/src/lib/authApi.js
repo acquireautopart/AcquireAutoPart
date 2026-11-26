@@ -1,7 +1,6 @@
-export const authApiBase = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api").replace(
-  /\/+$/,
-  "",
-);
+import { API_BASE_URL } from "@/lib/apiBase";
+
+export const authApiBase = API_BASE_URL;
 
 let currentCustomerCache;
 let currentCustomerCacheExpiresAt = 0;

@@ -88,8 +88,8 @@ export function ProductImportDialog({ onClose, onImported }) {
           </div>
           <p className="mt-2 text-neutral-600 dark:text-neutral-300">
             Required columns: <code>sku</code>, <code>name</code>, <code>category</code>,{" "}
-            <code>subcategory</code>, <code>price</code>, and <code>images</code>. Choose
-            category and subcategory names from the managed list.
+            <code>price</code>, and <code>images</code>. Category and subcategory can use
+            seller-defined names; managed categories appear as suggestions where available.
           </p>
           <p className="mt-1 text-neutral-600 dark:text-neutral-300">
             Add 1–7 HTTP/HTTPS image URLs per product. In CSV/Excel, separate image URLs with{" "}

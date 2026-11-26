@@ -72,7 +72,7 @@ export function Status({ value }) {
           "Maintenance",
         ].includes(value)
       ? "bg-orange-100 text-orange-700 dark:bg-orange-950/60 dark:text-orange-300"
-      : ["Rejected", "Suspended", "Hidden", "Cancelled", "Refunded"].includes(value)
+      : ["Rejected", "Suspended", "Hidden", "Inactive", "Cancelled", "Refunded"].includes(value)
         ? "bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
         : "bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300";
   return (
@@ -86,18 +86,39 @@ export function Status({ value }) {
     </span>
   );
 }
-export function PageHeading({ title, sub, action }) {
+
+export function AdminHero({ eyebrow = "ADMIN CONSOLE", title, sub, action }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <p className="text-[9px] font-extrabold tracking-[.15em] text-neutral-400">ADMIN CONSOLE</p>
-        <h1 className="mt-1 font-display text-2xl font-extrabold tracking-tight">{title}</h1>
-        <p className="mt-1 text-xs text-neutral-500">{sub}</p>
+    <section className="relative isolate flex min-h-[132px] items-center overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 via-orange-600 to-orange-800 px-5 py-5 text-white shadow-[0_10px_28px_rgba(234,88,12,.18)] sm:px-8">
+      <img
+        src="/car.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-y-0 right-0 z-0 h-full w-[58%] object-cover object-[center_48%] opacity-40 sm:w-[52%] sm:opacity-80"
+      />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-orange-600 via-orange-600/90 to-orange-800/20" />
+      <div className="relative z-10 flex w-full flex-wrap items-center justify-between gap-4">
+        <div className="max-w-[680px]">
+          <p className="text-[9px] font-extrabold tracking-[.18em] text-orange-50/80">
+            {eyebrow}
+          </p>
+          <h1 className="mt-1 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+            {title}
+          </h1>
+          <p className="mt-1 max-w-[560px] text-xs text-orange-50/95 sm:text-sm">
+            {sub}
+          </p>
+        </div>
+        {action && <div className="shrink-0">{action}</div>}
       </div>
-      {action}
-    </div>
+    </section>
   );
 }
+
+export function PageHeading(props) {
+  return <AdminHero {...props} />;
+}
+
 export function Empty({ text }) {
   return <div className="px-5 py-12 text-center text-sm text-neutral-500">{text}</div>;
 }

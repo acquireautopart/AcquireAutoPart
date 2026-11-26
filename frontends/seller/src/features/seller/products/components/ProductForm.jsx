@@ -5,7 +5,6 @@ import { sellerApi } from "@/features/seller/lib/sellerApi";
 
 export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadImages }) {
   const [categories, setCategories] = useState([]);
-  const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [categoriesError, setCategoriesError] = useState("");
   const [variants, setVariants] = useState(
     (product?.variants || []).map((v) => ({
@@ -43,9 +42,6 @@ export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadI
       })
       .catch((requestError) => {
         if (active) setCategoriesError(requestError.message);
-      })
-      .finally(() => {
-        if (active) setCategoriesLoading(false);
       });
     return () => {
       active = false;
@@ -134,10 +130,7 @@ export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadI
       busy={
         busy ||
         uploadingImages ||
-        imageUrls.length > 6 ||
-        categoriesLoading ||
-        Boolean(categoriesError) ||
-        categories.length === 0
+        imageUrls.length > 6
       }
       submitLabel={product ? "Save changes" : "Add product"}
       compact
@@ -152,10 +145,9 @@ export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadI
       )}
       {categoriesError && (
         <p
-          className="mb-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
-          role="alert"
+          className="mb-3 rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
         >
-          Could not load managed categories: {categoriesError}
+          Category suggestions could not be loaded. You can still enter any category.
         </p>
       )}
       <div className="grid gap-x-4 sm:grid-cols-2">
@@ -175,9 +167,10 @@ export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadI
             name="category"
             list="seller-product-category-options"
             required
+            maxLength={80}
             value={quality.category}
             onChange={(event) => updateCategory(event.target.value)}
-            placeholder="Search or choose a category"
+            placeholder="Enter any category or choose a suggestion"
             className="mt-1.5 h-9 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm dark:border-neutral-700 dark:bg-neutral-900"
           />
           <datalist id="seller-product-category-options">
@@ -191,17 +184,12 @@ export function ProductForm({ product, busy, error, onClose, onSubmit, onUploadI
           <input
             name="subcategory"
             list="seller-product-subcategory-options"
-            required={subcategories.length > 0}
-            disabled={Boolean(selectedCategory && !subcategories.length)}
+            maxLength={80}
             value={quality.subcategory}
             onChange={(event) =>
               updateQuality("subcategory", event.target.value)
             }
-            placeholder={
-              selectedCategory
-                ? "Search or choose a subcategory"
-                : "Choose a managed category first"
-            }
+            placeholder="Enter or choose a subcategory (optional)"
             className="mt-1.5 h-9 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm dark:border-neutral-700 dark:bg-neutral-900"
           />
           <datalist id="seller-product-subcategory-options">

@@ -1,6 +1,6 @@
-const apiBase = (
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"
-).replace(/\/+$/, "");
+import { API_BASE_URL } from "@/lib/apiBase";
+
+const apiBase = API_BASE_URL;
 
 async function request(path, { method = "GET", body, signal } = {}) {
   const response = await fetch(`${apiBase}/delivery${path}`, {
